@@ -50,7 +50,7 @@ Section2:AddButton({
     Name = "Passar sozinho",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-71.9482650756836, 68.62309265136719, -152.9066162109375)
-        wait(33)
+        wait(38)
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-117.57471466064453, 45.63472366333008, -395.8871765136719)
     end
 })
@@ -90,5 +90,19 @@ Section3:AddButton({
     Name = "Item 3",  
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-17.140830993652344, 4, -479.48321533203125)
+    end
+})
+
+Section3:AddButton({
+    Name = "Incendiar tocha",  
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1.1882413625717163, 3.999999523162842, -545.6921997070312)
+    end
+})
+
+Section3:AddButton({
+    Name = "Incendiar tocha 2",  
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-268.70721435546875, 3.999147891998291, -551.6334228515625)
     end
 })
