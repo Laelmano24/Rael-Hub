@@ -106,3 +106,20 @@ Section3:AddButton({
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-268.70721435546875, 3.999147891998291, -551.6334228515625)
     end
 })
+
+local Tab4 = Window:MakeTab({
+    Name = "Fase dos sinos",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Section4 = Tab4:AddSection({
+    Name = "Section"
+})
+
+Section4:AddButton({
+    Name = "Tp porta",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-327.4331359863281, 6.585247039794922, -1067.4490966796875)
+    end
+})
