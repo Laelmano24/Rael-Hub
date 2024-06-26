@@ -123,3 +123,31 @@ Section4:AddButton({
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-327.4331359863281, 6.585247039794922, -1067.4490966796875)
     end
 })
+
+Section4:AddButton({
+    Name = "Sino 1",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-387.5111389160156, 10.257816314697266, -1343.7481689453125)
+    end
+})
+
+Section4:AddButton({
+    Name = "Sino 2",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-503.5439453125, 11.307804107666016, -1439.5289306640625)
+    end
+})
+
+Section4:AddButton({
+    Name = "Sino 3",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-355.8379821777344, 8.421131134033203, -1699.8572998046875)
+    end
+})
+
+Section4:AddButton({
+    Name = "Sino 4",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-679.4843139648438, 8.826726913452148, -2039.6744384765625)
+    end
+})
