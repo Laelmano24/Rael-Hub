@@ -51,6 +51,7 @@ Section2:AddButton({
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-71.9482650756836, 68.62309265136719, -152.9066162109375)
          wait(38)
+          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-117.57471466064453, 45.63472366333008, -395.8871765136719)
          
     end
 })
