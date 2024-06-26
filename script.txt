@@ -94,6 +94,13 @@ Section3:AddButton({
 })
 
 Section3:AddButton({
+    Name = "Item 4",  
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-193.0465087890625, 4, -756.7428588867188)
+    end
+})
+
+Section3:AddButton({
     Name = "Incendiar tocha",  
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1.1882413625717163, 3.999999523162842, -545.6921997070312)
@@ -174,3 +181,23 @@ Section5:AddButton({
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3898.256591796875, -50.65171432495117, -2288.35693359375)
     end
 })
+
+-- Nova aba e botão adicionados
+local Tab6 = Window:MakeTab({
+    Name = "Skip senzai",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Section6 = Tab6:AddSection({
+    Name = "Section"
+})
+
+Section6:AddButton({
+    Name = "Skip",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4242.802734375, 7.000011920928955, -2519.427001953125)
+    end
+})
+
+OrionLib:Init()
