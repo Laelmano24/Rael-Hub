@@ -151,3 +151,26 @@ Section4:AddButton({
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-679.4843139648438, 8.826726913452148, -2039.6744384765625)
     end
 })
+
+local Tab5 = Window:MakeTab({
+    Name = "Correr só boneco de Olinda",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Section5 = Tab5:AddSection({
+    Name = "Section"
+})
+
+Section5:AddButton({
+    Name = "Passar do boneco de Olinda",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4176.052734375, 44.40174865722656, -1955.488037109375)
+        wait(28)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4369.65478515625, -47.93013381958008, -2040.0382080078125)
+        wait(4)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4176.052734375, 44.40174865722656, -1955.488037109375)
+        wait(48)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3898.256591796875, -50.65171432495117, -2288.35693359375)
+    end
+})
