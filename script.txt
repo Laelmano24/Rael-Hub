@@ -159,6 +159,13 @@ Section4:AddButton({
     end
 })
 
+Section4:AddButton({
+    Name = "Sino 5",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1013.0804443359375, 8.999998092651367, -1964.8438720703125)
+    end
+})
+
 local Tab5 = Window:MakeTab({
     Name = "Correr só boneco de Olinda",
     Icon = "rbxassetid://4483345998",
