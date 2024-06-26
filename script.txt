@@ -47,7 +47,7 @@ local Section2 = Tab2:AddSection({
 })
 
 Section2:AddButton({
-    Name = "Passar sozinho",
+    Name = "Tenta passar",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-71.9482650756836, 68.62309265136719, -152.9066162109375)
         wait(38)
@@ -107,6 +107,13 @@ Section3:AddButton({
     end
 })
 
+Section3:AddButton({
+    Name = "Tp porta (Só quando você matar o Djabo)",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-327.4331359863281, 6.585247039794922, -1067.4490966796875)
+    end
+})
+
 local Tab4 = Window:MakeTab({
     Name = "Fase dos sinos",
     Icon = "rbxassetid://4483345998",
@@ -115,13 +122,6 @@ local Tab4 = Window:MakeTab({
 
 local Section4 = Tab4:AddSection({
     Name = "Section"
-})
-
-Section4:AddButton({
-    Name = "Tp porta",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-327.4331359863281, 6.585247039794922, -1067.4490966796875)
-    end
 })
 
 Section4:AddButton({
