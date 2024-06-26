@@ -1,0 +1,56 @@
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
+
+local Window = OrionLib:MakeWindow({
+    Name = "Rael Dev",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "OrionTest"
+})
+
+local Tab1 = Window:MakeTab({
+    Name = "Fase dos corações",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Section1 = Tab1:AddSection({
+    Name = "Section"
+})
+
+Section1:AddButton({
+    Name = "Executar",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        local humanoidRootPart = character.HumanoidRootPart
+
+        humanoidRootPart.CFrame = CFrame.new(-108.7853775024414, 45.47053909301758, 18.404680252075195)
+        wait(5)
+        humanoidRootPart.CFrame = CFrame.new(-24.40036964416504, 45.47053909301758, 38.82353973388672)
+        wait(5)
+        humanoidRootPart.CFrame = CFrame.new(-171.76132202148438, 45.49604797363281, 65.06329345703125)
+        wait(5)
+        humanoidRootPart.CFrame = CFrame.new(-129.64842224121094, 45.47053909301758, 125.12348175048828)
+        wait(5)
+        humanoidRootPart.CFrame = CFrame.new(-79.47737121582031, 45.47053909301758, 19.23678207397461)
+    end
+})
+
+local Tab2 = Window:MakeTab({
+    Name = "Correr do Djabo",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Section2 = Tab2:AddSection({
+    Name = "Section"
+})
+
+Section2:AddButton({
+    Name = "Passar sozinho",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-71.9482650756836, 68.62309265136719, -152.9066162109375)
+         wait(38)
+         
+    end
+})
