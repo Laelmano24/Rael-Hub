@@ -71,3 +71,24 @@ Section3:AddButton({
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-78.55948638916016, 3.999999523162842, -424.7477722167969)
     end
 })
+
+Section3:AddButton({
+    Name = "Item 1",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-75.57953643798828, 3.999999523162842, -600.0673217773438)
+    end
+})
+
+Section3:AddButton({
+    Name = "Item 2",  
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-188.1136016845703, 4.05402135848999, -517.3660278320312)
+    end
+})
+
+Section3:AddButton({
+    Name = "Item 3",  
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-17.140830993652344, 4, -479.48321533203125)
+    end
+})
