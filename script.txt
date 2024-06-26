@@ -50,8 +50,24 @@ Section2:AddButton({
     Name = "Passar sozinho",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-71.9482650756836, 68.62309265136719, -152.9066162109375)
-         wait(38)
-          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-117.57471466064453, 45.63472366333008, -395.8871765136719)
-         
+        wait(38)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-117.57471466064453, 45.63472366333008, -395.8871765136719)
+    end
+})
+
+local Tab3 = Window:MakeTab({
+    Name = "Tacar fogo no djabo",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Section3 = Tab3:AddSection({
+    Name = "Section"
+})
+
+Section3:AddButton({
+    Name = "Safe zone",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-78.55948638916016, 3.999999523162842, -424.7477722167969)
     end
 })
