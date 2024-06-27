@@ -75,6 +75,41 @@ local function congelar(tempo)
 end
 
 
+local RunService = game:GetService("RunService")
+
+local function FlyTo(destination, speed)
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    if character then
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+
+        if humanoidRootPart and humanoid then
+            -- Faz o personagem pular
+            humanoid.Jump = true
+
+            -- Aguarda um pequeno tempo para o pulo ser executado
+            wait(0.2)
+
+            -- Configura o BodyVelocity para o voo
+            local bodyVelocity = Instance.new("BodyVelocity")
+            bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000)
+            bodyVelocity.Velocity = (destination - humanoidRootPart.Position).unit * speed
+            bodyVelocity.Parent = humanoidRootPart
+            
+            local connection
+            connection = RunService.Stepped:Connect(function()
+                if (destination - humanoidRootPart.Position).magnitude < 5 then
+                    bodyVelocity:Destroy()
+                    connection:Disconnect()
+                    humanoidRootPart.CFrame = CFrame.new(destination)
+                end
+            end)
+        end
+    end
+end
+
+
 local Tab1 = Window:MakeTab({
     Name = "Fase dos corações",
     Icon = "rbxassetid://4483345998",
