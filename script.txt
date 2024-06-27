@@ -7,6 +7,74 @@ local Window = OrionLib:MakeWindow({
     ConfigFolder = "OrionTest"
 })
 
+
+local function ShowText(text, count)
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "ItemTextGui"
+    gui.Parent = game.Players.LocalPlayer.PlayerGui
+    
+    local textLabel = Instance.new("TextLabel")
+    textLabel.Size = UDim2.new(0.8, 0, 0.2, 0)
+    textLabel.Position = UDim2.new(0.1, 0, 0.35, 0)  -- Ajuste a posição para ficar mais acima
+    textLabel.BackgroundTransparency = 1
+    textLabel.TextColor3 = Color3.fromRGB(255, 69, 50)
+    textLabel.TextStrokeColor3 = Color3.fromRGB(255, 69, 50)  -- Cor da borda do texto
+    textLabel.TextSize = 30
+    textLabel.Font = Enum.Font.SourceSans
+    textLabel.Text = text
+    textLabel.Parent = gui
+    
+    textLabel.BorderSizePixel = 0
+    textLabel.TextWrapped = true
+    textLabel.TextScaled = true
+    textLabel.TextStrokeTransparency = 0
+    textLabel.TextXAlignment = Enum.TextXAlignment.Center
+
+    local timerGui = Instance.new("ScreenGui")
+    timerGui.Name = "TimerGui"
+    timerGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+    local timerTextLabel = Instance.new("TextLabel")
+    timerTextLabel.Parent = timerGui
+    timerTextLabel.Size = UDim2.new(0, 100, 0, 30)  -- Ajuste o tamanho para 30 pixels de altura
+    timerTextLabel.Position = UDim2.new(0.5, -50, 0.55, 0)  -- Ajuste a posição para ficar abaixo do texto principal
+    timerTextLabel.BackgroundTransparency = 1
+    timerTextLabel.TextColor3 = Color3.new(50/255, 255/255, 107/255)
+    timerTextLabel.Font = Enum.Font.SourceSans
+    timerTextLabel.TextSize = 50
+    timerTextLabel.Text = tostring(count)
+
+    local countdown = coroutine.wrap(function()
+        for i = count, 1, -1 do
+            timerTextLabel.Text = tostring(i)
+            wait(1)
+        end
+        timerGui:Destroy()
+        gui:Destroy()
+    end)
+    countdown()
+end
+
+local function congelar(tempo)
+    local character = game.Players.LocalPlayer.Character
+    if character then
+        character:FindFirstChildOfClass("Humanoid").RootPart.Anchored = true
+        game.StarterGui:SetCore("ChatMakeSystemMessage", {
+            Text = "Personagem congelado por " .. tostring(tempo) .. " segundos!",
+            Color = Color3.new(1, 0, 0)
+        })
+
+        wait(tempo)
+        
+        character:FindFirstChildOfClass("Humanoid").RootPart.Anchored = false
+        game.StarterGui:SetCore("ChatMakeSystemMessage", {
+            Text = "Personagem descongelado!",
+            Color = Color3.new(0, 1, 0)
+        })
+    end
+end
+
+
 local Tab1 = Window:MakeTab({
     Name = "Fase dos corações",
     Icon = "rbxassetid://4483345998",
@@ -49,8 +117,13 @@ local Section2 = Tab2:AddSection({
 Section2:AddButton({
     Name = "Tenta passar",
     Callback = function()
+      
+        
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-71.9482650756836, 68.62309265136719, -152.9066162109375)
-        wait(38)
+        ShowText("Não se mover, o bypass está em andamento", 38)
+        congelar(38)
+        
+   
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-117.57471466064453, 45.63472366333008, -395.8871765136719)
     end
 })
@@ -117,6 +190,12 @@ Section3:AddButton({
 Section3:AddButton({
     Name = "Tp porta (Só quando você matar o Djabo)",
     Callback = function()
+        
+        
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-75.16085052490234, 6.037174701690674, -884.1526489257812)
+        
+        congelar(3)
+        
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-327.4331359863281, 6.585247039794922, -1067.4490966796875)
     end
 })
@@ -179,12 +258,28 @@ local Section5 = Tab5:AddSection({
 Section5:AddButton({
     Name = "Passar do boneco de Olinda",
     Callback = function()
+      
+      
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4176.052734375, 44.40174865722656, -1955.488037109375)
-        wait(28)
+        
+        
+        ShowText("Não se mover, o bypass está em andamento", 28)
+        congelar(28)
+        
+        
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4369.65478515625, -47.93013381958008, -2040.0382080078125)
+        
+        
         wait(4)
+        
+        
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4176.052734375, 44.40174865722656, -1955.488037109375)
-        wait(48)
+        
+        
+        ShowText("Não se mover, o bypass está em andamento", 48)
+        congelar(48)
+        
+        
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3898.256591796875, -50.65171432495117, -2288.35693359375)
     end
 })
