@@ -109,18 +109,33 @@ local function FlyTo(destination, speed)
     end
 end
 
+local Skip_cutscene = Window:MakeTab({
+    Name = "Skip cutscene",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
 
-local Tab1 = Window:MakeTab({
+local Sc_section1 = Skip_cutscene:AddSection({
+    Name = "Pular a cutscene"
+})
+Sc_section1:AddButton({
+    Name = "Pular cutscene",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-132.10032653808594, 45.51211929321289, 67.8162841796875)
+    end
+})
+
+local Aba1 = Window:MakeTab({
     Name = "Fase dos corações",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local Section1 = Tab1:AddSection({
-    Name = "Section"
+local Aba1_section1 = Aba1:AddSection({
+    Name = "Pegar todos os corações"
 })
 
-Section1:AddButton({
+Aba1_section1:AddButton({
     Name = "Executar",
     Callback = function()
         local player = game.Players.LocalPlayer
@@ -139,17 +154,17 @@ Section1:AddButton({
     end
 })
 
-local Tab2 = Window:MakeTab({
+local Aba2 = Window:MakeTab({
     Name = "Correr do Djabo",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local Section2 = Tab2:AddSection({
-    Name = "Section"
+local Aba2_section1 = Aba2:AddSection({
+    Name = "Fugir do santanais"
 })
 
-Section2:AddButton({
+Aba2_section1:AddButton({
     Name = "Tenta passar",
     Callback = function()
       
@@ -163,66 +178,78 @@ Section2:AddButton({
     end
 })
 
-local Tab3 = Window:MakeTab({
+local Aba3 = Window:MakeTab({
     Name = "Tacar fogo no djabo",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local Section3 = Tab3:AddSection({
-    Name = "Section"
+local Aba3_section1 = Aba3:AddSection({
+    Name = "Área segura"
 })
 
-Section3:AddButton({
+local Aba3_section2 = Aba3:AddSection({
+    Name = "Pegar itens"
+})
+
+local Aba3_section3 = Aba3:AddSection({
+    Name = "Incendiar a tocha"
+})
+
+local Aba3_section4 = Aba3:AddSection({
+    Name = "Passar do portão"
+})
+
+Aba3_section1:AddButton({
     Name = "Safe zone",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-78.55948638916016, 3.999999523162842, -424.7477722167969)
     end
 })
 
-Section3:AddButton({
+Aba3_section2:AddButton({
     Name = "Item 1",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-75.57953643798828, 3.999999523162842, -600.0673217773438)
     end
 })
 
-Section3:AddButton({
+Aba3_section2:AddButton({
     Name = "Item 2",  
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-188.1136016845703, 4.05402135848999, -517.3660278320312)
     end
 })
 
-Section3:AddButton({
+Aba3_section2:AddButton({
     Name = "Item 3",  
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-17.140830993652344, 4, -479.48321533203125)
     end
 })
 
-Section3:AddButton({
+Aba3_section2:AddButton({
     Name = "Item 4",  
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-193.0465087890625, 4, -756.7428588867188)
     end
 })
 
-Section3:AddButton({
+Aba3_section3:AddButton({
     Name = "Incendiar tocha",  
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1.1882413625717163, 3.999999523162842, -545.6921997070312)
     end
 })
 
-Section3:AddButton({
+Aba3_section3:AddButton({
     Name = "Incendiar tocha 2",  
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-268.70721435546875, 3.999147891998291, -551.6334228515625)
     end
 })
 
-Section3:AddButton({
+Aba3_section4:AddButton({
     Name = "Tp porta (Só quando você matar o Djabo)",
     Callback = function()
         
