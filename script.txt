@@ -262,62 +262,87 @@ Aba3_section4:AddButton({
     end
 })
 
-local Tab4 = Window:MakeTab({
+local Aba4 = Window:MakeTab({
     Name = "Fase dos sinos",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local Section4 = Tab4:AddSection({
-    Name = "Section"
+local Aba4_section1 = Aba4:AddSection({
+    Name = "Teleportar nos sinos"
 })
 
-Section4:AddButton({
+local Aba4_section2 = Aba4:AddSection({
+    Name = "Teleportar para as portas"
+})
+
+Aba4_section1:AddButton({
     Name = "Sino 1",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-387.5111389160156, 10.257816314697266, -1343.7481689453125)
     end
 })
 
-Section4:AddButton({
+Aba4_section1:AddButton({
     Name = "Sino 2",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-503.5439453125, 11.307804107666016, -1439.5289306640625)
     end
 })
 
-Section4:AddButton({
+Aba4_section1:AddButton({
     Name = "Sino 3",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-355.8379821777344, 8.421131134033203, -1699.8572998046875)
     end
 })
 
-Section4:AddButton({
+Aba4_section1:AddButton({
     Name = "Sino 4",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-679.4843139648438, 8.826726913452148, -2039.6744384765625)
     end
 })
 
-Section4:AddButton({
+Aba4_section1:AddButton({
     Name = "Sino 5",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1013.0804443359375, 8.999998092651367, -1964.8438720703125)
     end
 })
 
-local Tab5 = Window:MakeTab({
-    Name = "Correr do boneco de Olinda",
+Aba4_section2:AddButton({
+    Name = "Portão 1",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-868.7260131835938, 8.999996185302734, -1702.6456298828125)
+    end
+})
+
+Aba4_section2:AddButton({
+    Name = "Portão 2",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-438.0998229980469, 11.123943328857422, -1909.980712890625)
+    end
+})
+
+Aba4_section2:AddButton({
+    Name = "Portão 2",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-244.1696014404297, 8.999998092651367, -1170.60498046875)
+    end
+})
+
+local Aba5 = Window:MakeTab({
+    Name = "Correr do poste",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local Section5 = Tab5:AddSection({
-    Name = "Section"
+local Aba5_section1 = Aba5:AddSection({
+    Name = "Correr do boneco do boneco de posto"
 })
 
-Section5:AddButton({
+Aba5_section1:AddButton({
     Name = "Passar do boneco de Olinda",
     Callback = function()
       
@@ -346,18 +371,17 @@ Section5:AddButton({
     end
 })
 
--- Nova aba e botão adicionados
-local Tab6 = Window:MakeTab({
+local Aba6 = Window:MakeTab({
     Name = "Skip senzai",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local Section6 = Tab6:AddSection({
-    Name = "Section"
+local Aba6_section1 = Aba6:AddSection({
+    Name = "Passar rápido"
 })
 
-Section6:AddButton({
+Aba6_section1:AddButton({
     Name = "Skip",
     Callback = function()
         
