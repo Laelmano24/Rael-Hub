@@ -298,7 +298,20 @@ local Section6 = Tab6:AddSection({
 Section6:AddButton({
     Name = "Skip",
     Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(4242.802734375, 7.000011920928955, -2519.427001953125)
+        
+        
+        -- Exemplo de uso da função FlyTo
+        local destino = Vector3.new(4242.802734375, 7.000011920928955, -2519.427001953125)
+        
+        
+        -- Defina as coordenadas de destino
+        local velocidade = 50  
+        
+        
+        -- Defina a velocidade do voo
+        FlyTo(destino, velocidade)
+        
+        
     end
 })
 
