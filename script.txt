@@ -246,7 +246,7 @@ Section4:AddButton({
 })
 
 local Tab5 = Window:MakeTab({
-    Name = "Correr só boneco de Olinda",
+    Name = "Correr do boneco de Olinda",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
