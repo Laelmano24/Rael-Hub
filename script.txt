@@ -194,7 +194,7 @@ Section3:AddButton({
         
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-75.16085052490234, 6.037174701690674, -884.1526489257812)
         
-        congelar(3)
+        congelar(1)
         
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-327.4331359863281, 6.585247039794922, -1067.4490966796875)
     end
