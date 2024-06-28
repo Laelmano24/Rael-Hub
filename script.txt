@@ -326,9 +326,16 @@ Aba4_section2:AddButton({
 })
 
 Aba4_section2:AddButton({
-    Name = "Portão 2",
+    Name = "Portão 3",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-244.1696014404297, 8.999998092651367, -1170.60498046875)
+    end
+})
+
+Aba4_section2:AddButton({
+    Name = "Portão 4",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1021.5662231445312, 8.999998092651367, -1924.338134765625)
     end
 })
 
