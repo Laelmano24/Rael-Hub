@@ -626,4 +626,293 @@ Aba1_section1:AddButton({
 
         humanoidRootPart.CFrame = CFrame.new(-108.7853775024414, 45.47053909301758, 18.404680252075195)
         wait(5)
- 
+        humanoidRootPart.CFrame = CFrame.new(-24.40036964416504, 45.47053909301758, 38.82353973388672)
+        wait(5)
+        humanoidRootPart.CFrame = CFrame.new(-171.76132202148438, 45.49604797363281, 65.06329345703125)
+        wait(5)
+        humanoidRootPart.CFrame = CFrame.new(-129.64842224121094, 45.47053909301758, 125.12348175048828)
+        wait(5)
+        humanoidRootPart.CFrame = CFrame.new(-79.47737121582031, 45.47053909301758, 19.23678207397461)
+    end
+})
+
+local Aba2 = Window:MakeTab({
+    Name = "Correr do Djabo",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba2_section1 = Aba2:AddSection({
+    Name = "Fugir do santanais"
+})
+
+Aba2_section1:AddButton({
+    Name = "Tenta passar",
+    Callback = function()
+      
+        
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-71.9482650756836, 68.62309265136719, -152.9066162109375)
+        ShowText("Não se mover, o bypass está em andamento", 38)
+        congelar(38)
+        
+   
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-117.57471466064453, 45.63472366333008, -395.8871765136719)
+    end
+})
+
+local Aba3 = Window:MakeTab({
+    Name = "Tacar fogo no djabo",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba3_section1 = Aba3:AddSection({
+    Name = "Área segura"
+})
+
+local Aba3_section2 = Aba3:AddSection({
+    Name = "Pegar itens"
+})
+
+local Aba3_section3 = Aba3:AddSection({
+    Name = "Incendiar a tocha"
+})
+
+local Aba3_section4 = Aba3:AddSection({
+    Name = "Passar do portão"
+})
+
+Aba3_section1:AddButton({
+    Name = "Safe zone",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-78.55948638916016, 3.999999523162842, -424.7477722167969)
+    end
+})
+
+Aba3_section2:AddButton({
+    Name = "Item 1",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-75.57953643798828, 3.999999523162842, -600.0673217773438)
+    end
+})
+
+Aba3_section2:AddButton({
+    Name = "Item 2",  
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-188.1136016845703, 4.05402135848999, -517.3660278320312)
+    end
+})
+
+Aba3_section2:AddButton({
+    Name = "Item 3",  
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-17.140830993652344, 4, -479.48321533203125)
+    end
+})
+
+Aba3_section2:AddButton({
+    Name = "Item 4",  
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-193.0465087890625, 4, -756.7428588867188)
+    end
+})
+
+Aba3_section3:AddButton({
+    Name = "Incendiar tocha",  
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1.1882413625717163, 3.999999523162842, -545.6921997070312)
+    end
+})
+
+Aba3_section3:AddButton({
+    Name = "Incendiar tocha 2",  
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-268.70721435546875, 3.999147891998291, -551.6334228515625)
+    end
+})
+
+Aba3_section4:AddButton({
+    Name = "Tp porta (Só quando você matar o Djabo)",
+    Callback = function()
+        
+        
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-75.16085052490234, 6.037174701690674, -884.1526489257812)
+        
+        congelar(1)
+        
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-327.4331359863281, 6.585247039794922, -1067.4490966796875)
+    end
+})
+
+local Aba4 = Window:MakeTab({
+    Name = "Fase dos sinos",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba4_section1 = Aba4:AddSection({
+    Name = "Teleportar nos sinos"
+})
+
+local Aba4_section2 = Aba4:AddSection({
+    Name = "Teleportar para as portas"
+})
+
+Aba4_section1:AddButton({
+    Name = "Sino 1",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-387.5111389160156, 10.257816314697266, -1343.7481689453125)
+    end
+})
+
+Aba4_section1:AddButton({
+    Name = "Sino 2",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-503.5439453125, 11.307804107666016, -1439.5289306640625)
+    end
+})
+
+Aba4_section1:AddButton({
+    Name = "Sino 3",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-355.8379821777344, 8.421131134033203, -1699.8572998046875)
+    end
+})
+
+Aba4_section1:AddButton({
+    Name = "Sino 4",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-679.4843139648438, 8.826726913452148, -2039.6744384765625)
+    end
+})
+
+Aba4_section1:AddButton({
+    Name = "Sino 5",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1013.0804443359375, 8.999998092651367, -1964.8438720703125)
+    end
+})
+
+Aba4_section2:AddButton({
+    Name = "Portão 1",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-868.7260131835938, 8.999996185302734, -1702.6456298828125)
+    end
+})
+
+Aba4_section2:AddButton({
+    Name = "Portão 2",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-438.0998229980469, 11.123943328857422, -1909.980712890625)
+    end
+})
+
+Aba4_section2:AddButton({
+    Name = "Portão 3",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-244.1696014404297, 8.999998092651367, -1170.60498046875)
+    end
+})
+
+Aba4_section2:AddButton({
+    Name = "Portão 4",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1021.5662231445312, 8.999998092651367, -1924.338134765625)
+    end
+})
+
+local Aba5 = Window:MakeTab({
+    Name = "Correr do poste",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba5_section1 = Aba5:AddSection({
+    Name = "Correr do boneco do boneco de posto"
+})
+
+Aba5_section1:AddButton({
+    Name = "Passar do boneco de Olinda",
+    Callback = function()
+      
+      
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4176.052734375, 44.40174865722656, -1955.488037109375)
+        
+        
+        ShowText("Não se mover, o bypass está em andamento", 28)
+        congelar(28)
+        
+        
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4369.65478515625, -47.93013381958008, -2040.0382080078125)
+        
+        
+        wait(4)
+        
+        
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4176.052734375, 44.40174865722656, -1955.488037109375)
+        
+        
+        ShowText("Não se mover, o bypass está em andamento", 48)
+        congelar(48)
+        
+        
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3876.863525390625, -82.5667953491211, -2291.44384765625)
+    end
+})
+
+local Aba6 = Window:MakeTab({
+    Name = "Skip senzai",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba6_section1 = Aba6:AddSection({
+    Name = "Passar rápido"
+})
+
+Aba6_section1:AddButton({
+    Name = "Skip",
+    Callback = function()
+        
+        
+        -- Exemplo de uso da função FlyTo
+        local destino = Vector3.new(4242.802734375, 7.000011920928955, -2519.427001953125)
+        
+        
+        -- Defina as coordenadas de destino
+        local velocidade = 50  
+        
+        
+        -- Defina a velocidade do voo
+        FlyTo(destino, velocidade)
+        
+        
+    end
+})
+
+local Aba7 = Window:MakeTab({
+    Name = "Skip andar",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba7_section1 = Aba7:AddSection({
+    Name = "Passar rápido"
+})
+
+Aba7_section1:AddButton({
+    Name = "Andar rápido",
+    Callback = function()
+      
+      
+      -- Exemplo de uso da função FlyToPosition
+      local targetPosition = Vector3.new(1134.19775390625, 18.6281795501709, -2356.963623046875)
+      local velocidade = 50
+      FlyToPosition(targetPosition, velocidade)
+        
+        
+    end
+})
+
+
+OrionLib:Init()
