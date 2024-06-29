@@ -109,6 +109,28 @@ local function FlyTo(destination, speed)
     end
 end
 
+local function noclip()
+    local character = game.Players.LocalPlayer.Character
+    if character then
+        for _, v in pairs(character:GetDescendants()) do
+            if v:IsA("BasePart") then
+                v.CanCollide = false
+            end
+        end
+    end
+end
+
+local function clip()
+    local character = game.Players.LocalPlayer.Character
+    if character then
+        for _, v in pairs(character:GetDescendants()) do
+            if v:IsA("BasePart") then
+                v.CanCollide = true
+            end
+        end
+    end
+end
+
 local Skip_cutscene = Window:MakeTab({
     Name = "Skip cutscene",
     Icon = "rbxassetid://4483345998",
