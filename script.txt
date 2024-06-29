@@ -7,7 +7,6 @@ local Window = OrionLib:MakeWindow({
     ConfigFolder = "OrionTest"
 })
 
-
 local function ShowText(text, count)
     local gui = Instance.new("ScreenGui")
     gui.Name = "ItemTextGui"
@@ -74,7 +73,6 @@ local function congelar(tempo)
     end
 end
 
-
 local RunService = game:GetService("RunService")
 
 local function FlyTo(destination, speed)
@@ -108,11 +106,6 @@ local function FlyTo(destination, speed)
         end
     end
 end
-
-
-local Players = game:GetService("Players")
-local Workspace = game:GetService("Workspace")
-local RunService = game:GetService("RunService")
 
 local function FlyToPosition(targetPosition, speed)
     local player = game.Players.LocalPlayer
@@ -160,23 +153,6 @@ local function FlyToPosition(targetPosition, speed)
         end
     end
 end
-
-local Plr = Players.LocalPlayer
-local Clipon = true
-
-RunService.Stepped:Connect(function()
-    if Clipon then
-        for _, child in ipairs(Workspace:GetChildren()) do
-            if child:IsA("Model") and child.Name == Plr.Name then
-                for _, part in ipairs(child:GetChildren()) do
-                    if part:IsA("BasePart") then
-                        part.CanCollide = false
-                    end
-                end
-            end
-        end
-    end
-end)
 
 local Skip_cutscene = Window:MakeTab({
     Name = "Skip cutscene",
@@ -237,7 +213,6 @@ Aba2_section1:AddButton({
     Name = "Tenta passar",
     Callback = function()
       
-        
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-71.9482650756836, 68.62309265136719, -152.9066162109375)
         ShowText("Não se mover, o bypass está em andamento", 38)
         congelar(38)
