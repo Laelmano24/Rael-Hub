@@ -538,5 +538,36 @@ Aba7_section1:AddButton({
     end
 })
 
+local Aba8 = Window:MakeTab({
+    Name = "Skip metrô",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba8_section1 = Aba8:AddSection({
+    Name = "Passar do metrô"
+})
+
+Aba8_section1:AddButton({
+    Name = "Executar",
+    Callback = function()
+      
+      
+      local position1 = Vector3.new(2056.811279296875, -7.461526393890381, 2266.935546875)
+      
+      local position2 = Vector3.new(2387.451171875, -7.3292365074157715, 2246.12841796875)
+      
+      local velocidade = 50
+      
+      FlyToPosition(position1, velocidade)
+      
+      wait(0.2)
+      
+      FlyToPosition(position2, velocidade)
+        
+        
+    end
+})
+
 
 OrionLib:Init()
