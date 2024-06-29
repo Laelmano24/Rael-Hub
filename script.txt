@@ -75,6 +75,39 @@ local function congelar(tempo)
 end
 
 
+local RunService = game:GetService("RunService")
+
+local function FlyTo(destination, speed)
+    local player = game.Players.LocalPlayer
+    local character = player.Character
+    if character then
+        local humanoidRootPart = character:FindFirstChild("HumanoidRootPart")
+        local humanoid = character:FindFirstChildOfClass("Humanoid")
+
+        if humanoidRootPart and humanoid then
+            -- Faz o personagem pular
+            humanoid.Jump = true
+
+            -- Aguarda um pequeno tempo para o pulo ser executado
+            wait(0.2)
+
+            -- Configura o BodyVelocity para o voo
+            local bodyVelocity = Instance.new("BodyVelocity")
+            bodyVelocity.MaxForce = Vector3.new(100000, 100000, 100000)
+            bodyVelocity.Velocity = (destination - humanoidRootPart.Position).unit * speed
+            bodyVelocity.Parent = humanoidRootPart
+            
+            local connection
+            connection = RunService.Stepped:Connect(function()
+                if (destination - humanoidRootPart.Position).magnitude < 5 then
+                    bodyVelocity:Destroy()
+                    connection:Disconnect()
+                    humanoidRootPart.CFrame = CFrame.new(destination)
+                end
+            end)
+        end
+    end
+end
 
 local Skip_cutscene = Window:MakeTab({
     Name = "Skip cutscene",
@@ -295,16 +328,13 @@ Aba4_section2:AddButton({
 Aba4_section2:AddButton({
     Name = "Portão 3",
     Callback = function()
-    
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-244.1696014404297, 8.999998092651367, -1170.60498046875)
-        
     end
 })
 
 Aba4_section2:AddButton({
     Name = "Portão 4",
     Callback = function()
-    
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1021.5662231445312, 8.999998092651367, -1924.338134765625)
     end
 })
@@ -345,7 +375,6 @@ Aba5_section1:AddButton({
         
         
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3876.863525390625, -82.5667953491211, -2291.44384765625)
-        
     end
 })
 
@@ -363,11 +392,21 @@ Aba6_section1:AddButton({
     Name = "Skip",
     Callback = function()
         
-        4242.802734375, 7.000011920928955, -2519.427001953125
+        
+        -- Exemplo de uso da função FlyTo
+        local destino = Vector3.new(4242.802734375, 7.000011920928955, -2519.427001953125)
+        
+        
+        -- Defina as coordenadas de destino
+        local velocidade = 50  
+        
+        
+        -- Defina a velocidade do voo
+        FlyTo(destino, velocidade)
+        
         
     end
 })
-
 
 local Aba7 = Window:MakeTab({
     Name = "Skip andar",
@@ -383,7 +422,12 @@ Aba7_section1:AddButton({
     Name = "Andar rápido",
     Callback = function()
       
-      1134.19775390625, 18.6281795501709, -2356.963623046875
+      
+      -- Exemplo de uso da função FlyToPosition
+      local targetPosition = Vector3.new(1134.19775390625, 18.6281795501709, -2356.963623046875)
+      local velocidade = 50
+      FlyToPosition(targetPosition, velocidade)
+        
         
     end
 })
