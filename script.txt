@@ -554,7 +554,7 @@ Aba8_section1:AddButton({
       
       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2056.811279296875, -7.461526393890381, 2266.935546875)
       
-      wait(7)
+      wait(10)
       
       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2387.451171875, -7.3292365074157715, 2246.12841796875)
         
