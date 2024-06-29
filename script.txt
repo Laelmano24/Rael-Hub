@@ -1,9 +1,6 @@
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 
 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/Laelmano24/Script-de-the-mimic-book-2-chapter-3-basico/main/funcoes.txt'))()
-
-
 local Window = OrionLib:MakeWindow({
     Name = "Rael Hub",
     HidePremium = false,
