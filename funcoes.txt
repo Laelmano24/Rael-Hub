@@ -1,7 +1,3 @@
--- funcoes.lua
-
-local RunService = game:GetService("RunService")
-
 local function ShowText(text, count)
     local gui = Instance.new("ScreenGui")
     gui.Name = "ItemTextGui"
@@ -68,6 +64,9 @@ local function congelar(tempo)
     end
 end
 
+
+local RunService = game:GetService("RunService")
+
 local function FlyTo(destination, speed)
     local player = game.Players.LocalPlayer
     local character = player.Character
@@ -99,9 +98,3 @@ local function FlyTo(destination, speed)
         end
     end
 end
-
-return {
-    ShowText = ShowText,
-    congelar = congelar,
-    FlyTo = FlyTo
-}
