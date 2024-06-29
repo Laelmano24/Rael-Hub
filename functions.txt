@@ -1,65 +1,91 @@
-local function ShowText(text, count)
-    local gui = Instance.new("ScreenGui")
-    gui.Name = "ItemTextGui"
-    gui.Parent = game.Players.LocalPlayer.PlayerGui
-    
-    local textLabel = Instance.new("TextLabel")
-    textLabel.Size = UDim2.new(0.8, 0, 0.2, 0)
-    textLabel.Position = UDim2.new(0.1, 0, 0.35, 0)  -- Ajuste a posição para ficar mais acima
-    textLabel.BackgroundTransparency = 1
-    textLabel.TextColor3 = Color3.fromRGB(255, 69, 50)
-    textLabel.TextStrokeColor3 = Color3.fromRGB(255, 69, 50)  -- Cor da borda do texto
-    textLabel.TextSize = 30
-    textLabel.Font = Enum.Font.SourceSans
-    textLabel.Text = text
-    textLabel.Parent = gui
-    
-    textLabel.BorderSizePixel = 0
-    textLabel.TextWrapped = true
-    textLabel.TextScaled = true
-    textLabel.TextStrokeTransparency = 0
-    textLabel.TextXAlignment = Enum.TextXAlignment.Center
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 
-    local timerGui = Instance.new("ScreenGui")
-    timerGui.Name = "TimerGui"
-    timerGui.Parent = game.Players.LocalPlayer.PlayerGui
+local Window = OrionLib:MakeWindow({
+    Name = "Rael Hub",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "OrionTest"
+})
 
-    local timerTextLabel = Instance.new("TextLabel")
-    timerTextLabel.Parent = timerGui
-    timerTextLabel.Size = UDim2.new(0, 100, 0, 30)  -- Ajuste o tamanho para 30 pixels de altura
-    timerTextLabel.Position = UDim2.new(0.5, -50, 0.55, 0)  -- Ajuste a posição para ficar abaixo do texto principal
-    timerTextLabel.BackgroundTransparency = 1
-    timerTextLabel.TextColor3 = Color3.new(50/255, 255/255, 107/255)
-    timerTextLabel.Font = Enum.Font.SourceSans
-    timerTextLabel.TextSize = 50
-    timerTextLabel.Text = tostring(count)
-
-    local countdown = coroutine.wrap(function()
-        for i = count, 1, -1 do
-            timerTextLabel.Text = tostring(i)
-            wait(1)
-        end
-        timerGui:Destroy()
-        gui:Destroy()
-    end)
-    countdown()
+local Funcoes = loadstring(game:HttpGet('https://raw.githubusercontent.com/Laelmano24/Script-de-the-mimic-book-2-chapter-3-basico/main/functions.txt'))()
+if not Funcoes then
+    warn("Não foi possível carregar as funções externas.")
+    return
 end
 
-local function congelar(tempo)
-    local character = game.Players.LocalPlayer.Character
-    if character then
-        character:FindFirstChildOfClass("Humanoid").RootPart.Anchored = true
-        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-            Text = "Personagem congelado por " .. tostring(tempo) .. " segundos!",
-            Color = Color3.new(1, 0, 0)
-        })
+local Skip_cutscene = Window:MakeTab({
+    Name = "Skip cutscene",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
 
-        wait(tempo)
-        
-        character:FindFirstChildOfClass("Humanoid").RootPart.Anchored = false
-        game.StarterGui:SetCore("ChatMakeSystemMessage", {
-            Text = "Personagem descongelado!",
-            Color = Color3.new(0, 1, 0)
-        })
+local Sc_section1 = Skip_cutscene:AddSection({
+    Name = "Pular a cutscene"
+})
+Sc_section1:AddButton({
+    Name = "Pular cutscene",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-132.10032653808594, 45.51211929321289, 67.8162841796875)
     end
-end
+})
+
+local Aba1 = Window:MakeTab({
+    Name = "Fase dos corações",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba1_section1 = Aba1:AddSection({
+    Name = "Pegar todos os corações"
+})
+
+Aba1_section1:AddButton({
+    Name = "Executar",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        local character = player.Character
+        local humanoidRootPart = character.HumanoidRootPart
+
+        humanoidRootPart.CFrame = CFrame.new(-108.7853775024414, 45.47053909301758, 18.404680252075195)
+        wait(5)
+        humanoidRootPart.CFrame = CFrame.new(-24.40036964416504, 45.47053909301758, 38.82353973388672)
+        wait(5)
+        humanoidRootPart.CFrame = CFrame.new(-171.76132202148438, 45.49604797363281, 65.06329345703125)
+        wait(5)
+        humanoidRootPart.CFrame = CFrame.new(-129.64842224121094, 45.47053909301758, 125.12348175048828)
+        wait(5)
+        humanoidRootPart.CFrame = CFrame.new(-79.47737121582031, 45.47053909301758, 19.23678207397461)
+    end
+})
+
+local Aba2 = Window:MakeTab({
+    Name = "Correr do Djabo",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba2_section1 = Aba2:AddSection({
+    Name = "Fugir do santanais"
+})
+
+Aba2_section1:AddButton({
+    Name = "Tenta passar",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-71.9482650756836, 68.62309265136719, -152.9066162109375)
+        if Funcoes and Funcoes.ShowText then
+            Funcoes.ShowText("Não se mover, o bypass está em andamento", 38)
+        else
+            warn("Função ShowText não encontrada.")
+        end
+        if Funcoes and Funcoes.congelar then
+            Funcoes.congelar(38)
+        else
+            warn("Função congelar não encontrada.")
+        end
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-117.57471466064453, 45.63472366333008, -395.8871765136719)
+    end
+})
+
+-- Continue adicionando as outras abas e seções aqui...
+
+OrionLib:Init()
