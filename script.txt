@@ -509,7 +509,7 @@ Aba6_section2:AddButton({
       
       wait(0.4)
       
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2523.459228515625, 31.182363510131836, -1885.0631103515625)
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2523.730712890625, 40.67369842529297, -1884.3419189453125)
         
     end
 })
