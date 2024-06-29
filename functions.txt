@@ -1,0 +1,46 @@
+local function ShowText(text, count)
+    local gui = Instance.new("ScreenGui")
+    gui.Name = "ItemTextGui"
+    gui.Parent = game.Players.LocalPlayer.PlayerGui
+    
+    local textLabel = Instance.new("TextLabel")
+    textLabel.Size = UDim2.new(0.8, 0, 0.2, 0)
+    textLabel.Position = UDim2.new(0.1, 0, 0.35, 0)  -- Ajuste a posição para ficar mais acima
+    textLabel.BackgroundTransparency = 1
+    textLabel.TextColor3 = Color3.fromRGB(255, 69, 50)
+    textLabel.TextStrokeColor3 = Color3.fromRGB(255, 69, 50)  -- Cor da borda do texto
+    textLabel.TextSize = 30
+    textLabel.Font = Enum.Font.SourceSans
+    textLabel.Text = text
+    textLabel.Parent = gui
+    
+    textLabel.BorderSizePixel = 0
+    textLabel.TextWrapped = true
+    textLabel.TextScaled = true
+    textLabel.TextStrokeTransparency = 0
+    textLabel.TextXAlignment = Enum.TextXAlignment.Center
+
+    local timerGui = Instance.new("ScreenGui")
+    timerGui.Name = "TimerGui"
+    timerGui.Parent = game.Players.LocalPlayer.PlayerGui
+
+    local timerTextLabel = Instance.new("TextLabel")
+    timerTextLabel.Parent = timerGui
+    timerTextLabel.Size = UDim2.new(0, 100, 0, 30)  -- Ajuste o tamanho para 30 pixels de altura
+    timerTextLabel.Position = UDim2.new(0.5, -50, 0.55, 0)  -- Ajuste a posição para ficar abaixo do texto principal
+    timerTextLabel.BackgroundTransparency = 1
+    timerTextLabel.TextColor3 = Color3.new(50/255, 255/255, 107/255)
+    timerTextLabel.Font = Enum.Font.SourceSans
+    timerTextLabel.TextSize = 50
+    timerTextLabel.Text = tostring(count)
+
+    local countdown = coroutine.wrap(function()
+        for i = count, 1, -1 do
+            timerTextLabel.Text = tostring(i)
+            wait(1)
+        end
+        timerGui:Destroy()
+        gui:Destroy()
+    end)
+    countdown()
+end
