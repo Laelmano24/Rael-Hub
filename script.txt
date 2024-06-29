@@ -422,12 +422,12 @@ Aba7_section1:AddButton({
     Name = "Andar rápido",
     Callback = function()
       
-      
-      -- Exemplo de uso da função FlyToPosition
-      local targetPosition = Vector3.new(1134.19775390625, 18.6281795501709, -2356.963623046875)
-      local velocidade = 50
-      FlyToPosition(targetPosition, velocidade)
-        
+        -- Exemplo de uso da função FlyTo
+        local destino = Vector3.new(1134.19775390625, 18.6281795501709, -2356.963623046875)
+
+        local velocidade = 50
+
+        FlyTo(destino, velocidade)
         
     end
 })
