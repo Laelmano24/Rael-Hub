@@ -7,6 +7,7 @@ local Window = OrionLib:MakeWindow({
     ConfigFolder = "OrionTest"
 })
 
+local Funcoes = loadstring(game:HttpGet('https://raw.githubusercontent.com/Laelmano24/Script-de-the-mimic-book-2-chapter-3-basico/main/functions.txt'))()
 
 local Skip_cutscene = Window:MakeTab({
     Name = "Skip cutscene",
@@ -69,8 +70,8 @@ Aba2_section1:AddButton({
       
         
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-71.9482650756836, 68.62309265136719, -152.9066162109375)
-        ShowText("Não se mover, o bypass está em andamento", 38)
-        congelar(38)
+        Funcoes.ShowText("Não se mover, o bypass está em andamento", 38)
+        Funcoes.congelar(38)
         
    
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-117.57471466064453, 45.63472366333008, -395.8871765136719)
@@ -256,8 +257,8 @@ Aba5_section1:AddButton({
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4176.052734375, 44.40174865722656, -1955.488037109375)
         
         
-        ShowText("Não se mover, o bypass está em andamento", 28)
-        congelar(28)
+        Funcoes.ShowText("Não se mover, o bypass está em andamento", 28)
+        Funcoes.congelar(28)
         
         
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4369.65478515625, -47.93013381958008, -2040.0382080078125)
