@@ -1,0 +1,40 @@
+-- Carrega a biblioteca Orion
+local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
+
+-- Carrega o módulo ESP
+local espModule = loadstring(game:HttpGet('URL_DO_SEU_ARQUIVO_ESP'))()
+
+local Window = OrionLib:MakeWindow({
+    Name = "Rael Hub",
+    HidePremium = false,
+    SaveConfig = true,
+    ConfigFolder = "OrionTest"
+})
+
+local Aba1 = Window:MakeTab({
+    Name = "Esp hiachi",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba1_section1 = Aba1:AddSection({
+    Name = "Esp"
+})
+
+-- Variável para controlar o estado do ESP
+local espEnabled = false
+
+Aba1_section1:AddToggle({
+    Name = "Executar",
+    Default = false,
+    Callback = function(Value)
+        espEnabled = Value
+        if espEnabled then
+            espModule.activateESP()
+        else
+            espModule.deactivateESP()
+        end
+    end    
+})
+
+OrionLib:Init()
