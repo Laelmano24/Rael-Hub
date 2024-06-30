@@ -552,9 +552,13 @@ Aba8_section1:AddButton({
     Name = "Executar",
     Callback = function()
       
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2056.811279296875, -7.461526393890381, 2266.935546875)
+      local targetPosition = Vector3.new(2056.811279296875, -7.461526393890381, 2266.935546875)
       
-      congelar(4)
+      local velocidade = 90
+      
+      FlyToPosition(targetPosition, velocidade)
+      
+      wait(10)
       
       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2108.827392578125, -1.280229091644287, 2260.781494140625)
         
