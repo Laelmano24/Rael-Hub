@@ -400,6 +400,13 @@ Aba4_section1:AddButton({
     end
 })
 
+Aba4_section1:AddButton({
+    Name = "Sino 5",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-780.34326171875, 18.859134674072266, -1716.7041015625)
+    end
+})
+
 Aba4_section2:AddButton({
     Name = "Portão 1",
     Callback = function()
