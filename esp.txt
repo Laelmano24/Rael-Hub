@@ -1,9 +1,10 @@
 local espModule = {}
 
-local espConnection
+local espConnectionHiachi
+local espConnectionPlayers = {}
 
 -- Função para criar o ESP e mudar a cor do monstro Hiachi para vermelho
-function espModule.createESP(target)
+function espModule.createESPForHiachi(target)
     for _, part in pairs(target:GetChildren()) do
         if part:IsA("BasePart") then
             local highlight = Instance.new("Highlight")
@@ -15,29 +16,77 @@ function espModule.createESP(target)
     end
 end
 
--- Função para ativar o ESP
-function espModule.activateESP()
-    espConnection = game:GetService("RunService").Stepped:Connect(function()
+-- Função para criar o ESP e mudar a cor dos jogadores para vermelho
+function espModule.createESPForPlayers(player)
+    local character = player.Character
+    if character then
+        for _, part in pairs(character:GetChildren()) do
+            if part:IsA("BasePart") then
+                local highlight = Instance.new("Highlight")
+                highlight.Parent = part
+                highlight.Adornee = part
+                highlight.FillColor = Color3.new(1, 0, 0) -- Vermelho
+                highlight.FillTransparency = 0.5
+            end
+        end
+    end
+end
+
+-- Função para ativar o ESP do monstro Hiachi
+function espModule.activateESPHiachi()
+    espConnectionHiachi = game:GetService("RunService").Stepped:Connect(function()
         for _, v in pairs(game.Workspace:GetDescendants()) do
             if v:IsA("Model") and v.Name == "Hiachi" and not v:FindFirstChildWhichIsA("Highlight") then
-                espModule.createESP(v)
+                espModule.createESPForHiachi(v)
             end
         end
     end)
 end
 
--- Função para desativar o ESP
-function espModule.deactivateESP()
-    if espConnection then
-        espConnection:Disconnect()
-        espConnection = nil
-        -- Remove os highlights
+-- Função para ativar o ESP dos jogadores
+function espModule.activateESPPlayers()
+    for _, player in pairs(game.Players:GetPlayers()) do
+        espConnectionPlayers[player] = player.CharacterAdded:Connect(function(character)
+            espModule.createESPForPlayers(player)
+        end)
+        espModule.createESPForPlayers(player) -- Ativa o ESP inicialmente para jogadores já existentes
+    end
+    game.Players.PlayerAdded:Connect(function(player)
+        espConnectionPlayers[player] = player.CharacterAdded:Connect(function(character)
+            espModule.createESPForPlayers(player)
+        end)
+    end)
+end
+
+-- Função para desativar o ESP do monstro Hiachi
+function espModule.deactivateESPHiachi()
+    if espConnectionHiachi then
+        espConnectionHiachi:Disconnect()
+        espConnectionHiachi = nil
+        -- Remove os highlights do monstro Hiachi
         for _, v in pairs(game.Workspace:GetDescendants()) do
             if v:IsA("Model") and v.Name == "Hiachi" then
                 for _, part in pairs(v:GetChildren()) do
                     if part:IsA("BasePart") and part:FindFirstChildWhichIsA("Highlight") then
                         part:FindFirstChildWhichIsA("Highlight"):Destroy()
                     end
+                end
+            end
+        end
+    end
+end
+
+-- Função para desativar o ESP dos jogadores
+function espModule.deactivateESPPlayers()
+    for player, connection in pairs(espConnectionPlayers) do
+        connection:Disconnect()
+        espConnectionPlayers[player] = nil
+        -- Remove os highlights dos jogadores
+        local character = player.Character
+        if character then
+            for _, part in pairs(character:GetChildren()) do
+                if part:IsA("BasePart") and part:FindFirstChildWhichIsA("Highlight") then
+                    part:FindFirstChildWhichIsA("Highlight"):Destroy()
                 end
             end
         end
