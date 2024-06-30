@@ -435,7 +435,7 @@ local Aba5 = Window:MakeTab({
 })
 
 local Aba5_section1 = Aba5:AddSection({
-    Name = "Correr do boneco de posto"
+    Name = "Correr do boneco do boneco de posto"
 })
 
 Aba5_section1:AddButton({
@@ -468,7 +468,7 @@ Aba5_section1:AddButton({
 })
 
 local Aba6 = Window:MakeTab({
-    Name = "Senzai",
+    Name = "Skip senzai",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
@@ -529,8 +529,12 @@ Aba7_section1:AddButton({
     Callback = function()
       
       
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1134.19775390625, 18.6281795501709, -2356.963623046875)
-      
+      -- Exemplo de uso da função FlyToPosition
+      local targetPosition = Vector3.new(1134.19775390625, 18.6281795501709, -2356.963623046875)
+      local velocidade = 50
+      FlyToPosition(targetPosition, velocidade)
+        
+        
     end
 })
 
