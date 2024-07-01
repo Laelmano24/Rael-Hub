@@ -734,10 +734,6 @@ local Aba12 = Window:MakeTab({
 })
 
 local Aba12_section1 = Aba12:AddSection({
-    Name = "Velocidade rápida"
-})
-
-local Aba12_section1 = Aba12:AddSection({
     Name = "Voar"
 })
 
