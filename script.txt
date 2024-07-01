@@ -673,4 +673,50 @@ Aba10_section1:AddButton({
     end
 })
 
+local Aba11 = Window:MakeTab({
+    Name = "Tp casa",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba11_section1 = Aba11:AddSection({
+    Name = "Teleportar casinha"
+})
+
+Aba11_section1:AddButton({
+    Name = "Casa 1",
+    Callback = function()
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1658.8175048828125, 16.9999942779541, -760.6777954101562)
+        
+    end
+})
+
+Aba11_section1:AddButton({
+    Name = "Casa 1",
+    Callback = function()
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1658.8175048828125, 16.9999942779541, -760.6777954101562)
+        
+    end
+})
+
+Aba11_section1:AddButton({
+    Name = "Casa 2",
+    Callback = function()
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2104.459716796875, 16.9999942779541, -797.1302490234375)
+        
+    end
+})
+
+Aba11_section1:AddButton({
+    Name = "Casa 3",
+    Callback = function()
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1689.6654052734375, 16.9999942779541, -470.5141906738281)
+        
+    end
+})
+
 OrionLib:Init()
