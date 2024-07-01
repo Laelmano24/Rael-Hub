@@ -198,6 +198,21 @@ local function Criarchao(position)
     end
 end
 
+-- Local Script
+
+-- Função para aumentar a velocidade
+local function aumentarVelocidade(velocidade)
+-- Obtenha o personagem do jogador
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+
+local humanoid = character:WaitForChild("Humanoid")
+
+humanoid.WalkSpeed = velocidade
+
+
+end
+
 
 local Skip_cutscene = Window:MakeTab({
     Name = "Skip cutscene",
@@ -730,13 +745,13 @@ Aba12_section1:AddButton({
     Name = "Correr rápido",
     Callback = function()
       
+      aumentarVelocidade(50)
       
-        
     end
 })
 
 Aba12_section2:AddButton({
-    Name = "Fly (velocidade recomendada: 1",
+    Name = "Fly (velocidade recomendada: 1)",
     Callback = function()
       
       loadstring(game:HttpGet("https://raw.githubusercontent.com/MaksBloxX/NoClipScript/main/Fly%20V3", true))()
