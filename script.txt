@@ -580,5 +580,46 @@ Aba8_section1:AddButton({
     end
 })
 
+local Aba9 = Window:MakeTab({
+    Name = "Fase das larvas",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba9_section1 = Aba9:AddSection({
+    Name = "Safe zone"
+})
+
+local Aba9_section2 = Aba9:AddSection({
+    Name = "Larvas"
+})
+
+Aba9_section1:AddButton({
+    Name = "Executar",
+    Callback = function()
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1491.93408203125, 8.99999713897705, 4141.634765625)
+        
+    end
+})
+
+Aba9_section2:AddButton({
+    Name = "Larva 1",
+    Callback = function()
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1659.2425537109375, 3.7213003635406494, 4162.61083984375)
+        
+    end
+})
+
+Aba9_section2:AddButton({
+    Name = "Larva 2",
+    Callback = function()
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1694.6314697265625, 18.159862518310547, 4411.02392578125)
+        
+    end
+})
+
 
 OrionLib:Init()
