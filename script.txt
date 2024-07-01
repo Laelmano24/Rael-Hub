@@ -795,7 +795,7 @@ local Aba14_section1 = Aba14:AddSection({
 })
 
 local Aba14_section2 = Aba14:AddSection({
-    Name = "Fullbriti"
+    Name = "FullBright"
 })
 
 Aba14_section1:AddButton({
@@ -835,6 +835,25 @@ Aba14_section1:AddButton({
       end)
       end)
         
+    end
+})
+
+Aba14_section2:AddButton({
+    Name = "FullBright",
+    Callback = function()
+      
+      local Light = game:GetService("Lighting")
+
+      function dofullbright()
+      Light.Ambient = Color3.new(1, 1, 1)
+      Light.ColorShift_Bottom = Color3.new(1, 1, 1)
+      Light.ColorShift_Top = Color3.new(1, 1, 1)
+      end
+
+dofullbright()
+
+Light.LightingChanged:Connect(dofullbright)
+      
     end
 })
 
