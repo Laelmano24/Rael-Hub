@@ -557,15 +557,25 @@ Aba8_section1:AddButton({
       
       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2107.757568359375, -7.4249773025512695, 2258.908447265625)
       
+      congelar(1)
       
-      wait(1)
+      local Position = Vector3.new(2319.43310546875, -7.473430633544922, 2262.974365234375)
       
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2319.43310546875, -7.473430633544922, 2262.974365234375)
+      local Velocidade = 50
       
-      wait(1)
+      FlyToPosition(Position, Velocidade)
+      
+      wait(5)
       
       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2364.91357421875, -7.28995943069458, 2248.90087890625)
-        
+      
+      wait(1)
+      
+      FlyToPosition(Position, Velocidade)
+      
+      wait(2)
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2364.91357421875, -7.28995943069458, 2248.90087890625)
         
     end
 })
