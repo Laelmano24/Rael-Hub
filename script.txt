@@ -790,6 +790,8 @@ Aba13_section2:AddButton({
    
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2365.189208984375, 83.78124237060547, 7787.03564453125)
       
+      wait(0.5)
+      
       local Position = Vector3.new(-1703.08349609375, 88.25239562988281, 7791.5654296875)
       
       local Velocidade = 60
