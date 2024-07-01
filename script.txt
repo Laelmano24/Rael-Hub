@@ -668,7 +668,7 @@ Aba10_section1:AddButton({
     Name = "Executar",
     Callback = function()
       
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new()
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2372.278564453125, -3.087095260620117, 6150.95947265625)
         
     end
 })
