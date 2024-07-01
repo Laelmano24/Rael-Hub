@@ -522,13 +522,13 @@ Aba6_section2:AddButton({
 })
 
 local Aba7 = Window:MakeTab({
-    Name = "Skip andar",
+    Name = "Tp casa",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 local Aba7_section1 = Aba7:AddSection({
-    Name = "Passar rápido"
+    Name = "Teleportar"
 })
 
 Aba7_section1:AddButton({
