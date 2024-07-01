@@ -692,6 +692,8 @@ Aba11_section1:AddButton({
     end
 })
 
+
+
 Aba11_section1:AddButton({
     Name = "Casa 2",
     Callback = function()
@@ -711,20 +713,52 @@ Aba11_section1:AddButton({
 })
 
 local Aba12 = Window:MakeTab({
-    Name = "Fase final",
+    Name = "Boss yurei",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 local Aba12_section1 = Aba12:AddSection({
-    Name = "Passar a parte de andar"
+    Name = "Velocidade rápida"
 })
 
 local Aba12_section2 = Aba12:AddSection({
-    Name = "Correr sozinho"
+    Name = "Voar"
 })
 
 Aba12_section1:AddButton({
+    Name = "Correr rápido",
+    Callback = function()
+      
+      
+        
+    end
+})
+
+Aba12_section2:AddButton({
+    Name = "Fly (velocidade recomendada: 1",
+    Callback = function()
+      
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/MaksBloxX/NoClipScript/main/Fly%20V3", true))()
+        
+    end
+})
+
+local Aba13 = Window:MakeTab({
+    Name = "Fase final",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba13_section1 = Aba13:AddSection({
+    Name = "Passar a parte de andar"
+})
+
+local Aba13_section2 = Aba13:AddSection({
+    Name = "Correr sozinho"
+})
+
+Aba13_section1:AddButton({
     Name = "Executar",
     Callback = function()
       
@@ -737,7 +771,7 @@ Aba12_section1:AddButton({
     end
 })
 
-Aba12_section2:AddButton({
+Aba13_section2:AddButton({
     Name = "Passar",
     Callback = function()
     
