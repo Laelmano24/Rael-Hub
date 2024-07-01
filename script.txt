@@ -489,7 +489,7 @@ local Aba6_section2 = Aba6:AddSection({
 })
 
 Aba6_section1:AddButton({
-    Name = "Skip",
+    Name = "Andar rápido",
     Callback = function()
         
         
@@ -674,7 +674,7 @@ Aba10_section1:AddButton({
 })
 
 local Aba11 = Window:MakeTab({
-    Name = "Tp casa",
+    Name = "Tp casa da yurei",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
@@ -706,6 +706,55 @@ Aba11_section1:AddButton({
     Callback = function()
       
       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1689.6654052734375, 16.9999942779541, -470.5141906738281)
+        
+    end
+})
+
+local Aba12 = Window:MakeTab({
+    Name = "Fase final",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba12_section1 = Aba12:AddSection({
+    Name = "Passar a parte de andar"
+})
+
+local Aba12_section2 = Aba12:AddSection({
+    Name = "Correr sozinho"
+})
+
+Aba12_section1:AddButton({
+    Name = "Executar",
+    Callback = function()
+      
+      local Position = Vector3.new(-2698.836181640625, 172.54824829101562, 8286.8271484375)
+      
+      local Velocidade = 60
+      
+      FlyToPosition(Position, Velocidade)
+        
+    end
+})
+
+Aba12_section2:AddButton({
+    Name = "Passar",
+    Callback = function()
+    
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2510.23046875, 230.110595703125, 7986.314453125)
+      
+      
+        ShowText("Não se mover, o bypass está em andamento", 38)
+        congelar(38)
+        
+   
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-2365.189208984375, 83.78124237060547, 7787.03564453125)
+      
+      local Position = Vector3.new(-1703.08349609375, 88.25239562988281, 7791.5654296875)
+      
+      local Velocidade = 60
+      
+      FlyToPosition(Position, Velocidade)
         
     end
 })
