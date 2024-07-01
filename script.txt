@@ -751,7 +751,7 @@ Aba13_section1:AddButton({
     Name = "Executar",
     Callback = function()
       
-      local Position = Vector3.new(-2698.836181640625, 172.54824829101562, 8286.8271484375)
+      local Position = Vector3.new(-2715.184814453125, 172.54824829101562, 8299.0224609375)
       
       local Velocidade = 60
       
