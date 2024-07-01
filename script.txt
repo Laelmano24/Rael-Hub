@@ -693,15 +693,6 @@ Aba11_section1:AddButton({
 })
 
 Aba11_section1:AddButton({
-    Name = "Casa 1",
-    Callback = function()
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1658.8175048828125, 16.9999942779541, -760.6777954101562)
-        
-    end
-})
-
-Aba11_section1:AddButton({
     Name = "Casa 2",
     Callback = function()
       
