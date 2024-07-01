@@ -542,13 +542,13 @@ Aba7_section1:AddButton({
 })
 
 local Aba8 = Window:MakeTab({
-    Name = "Skip metrô",
+    Name = "Passar do metrô",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
 local Aba8_section1 = Aba8:AddSection({
-    Name = "Passar do metrô"
+    Name = "Executar"
 })
 
 Aba8_section1:AddButton({
@@ -558,7 +558,11 @@ Aba8_section1:AddButton({
       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2107.757568359375, -7.4249773025512695, 2258.908447265625)
       
       
-      wait(5)
+      wait(1)
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2319.43310546875, -7.473430633544922, 2262.974365234375)
+      
+      wait(1)
       
       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2364.91357421875, -7.28995943069458, 2248.90087890625)
         
