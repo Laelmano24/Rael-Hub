@@ -594,6 +594,10 @@ local Aba9_section2 = Aba9:AddSection({
     Name = "Larvas"
 })
 
+local Aba9_section3 = Aba9:AddSection({
+    Name = "Bixo feio"
+})
+
 Aba9_section1:AddButton({
     Name = "Executar",
     Callback = function()
@@ -607,7 +611,7 @@ Aba9_section2:AddButton({
     Name = "Larva 1",
     Callback = function()
       
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1659.2425537109375, 3.7213003635406494, 4162.61083984375)
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1536.918701171875, 3.1784982681274414, 4248.04345703125)
         
     end
 })
@@ -616,10 +620,57 @@ Aba9_section2:AddButton({
     Name = "Larva 2",
     Callback = function()
       
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1659.2425537109375, 3.7213003635406494, 4162.61083984375)
+      
+      
+        
+    end
+})
+
+Aba9_section2:AddButton({
+    Name = "Larva 3",
+    Callback = function()
+      
       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1694.6314697265625, 18.159862518310547, 4411.02392578125)
         
     end
 })
 
+Aba9_section2:AddButton({
+    Name = "Larva 4",
+    Callback = function()
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1720.5401611328125, 0.7872464656829834, 4401.8095703125)
+        
+    end
+})
+
+Aba9_section3:AddButton({
+    Name = "Tp bixo feio",
+    Callback = function()
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1937.4410400390625, 17.371686935424805, 4643.7734375)
+        
+    end
+})
+
+local Aba10 = Window:MakeTab({
+    Name = "Fase do tolote",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Aba10_section1 = Aba10:AddSection({
+    Name = "Passar logo"
+})
+
+Aba10_section1:AddButton({
+    Name = "Executar",
+    Callback = function()
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new()
+        
+    end
+})
 
 OrionLib:Init()
