@@ -801,40 +801,57 @@ local Aba14_section2 = Aba14:AddSection({
 Aba14_section1:AddButton({
     Name = "Esp player",
     Callback = function()
+    
+      local FillColor = Color3.fromRGB(175,25,255)
+      local DepthMode = "AlwaysOnTop"
+      local FillTransparency = 0.5
+      local OutlineColor = Color3.fromRGB(255,255,255)
+      local OutlineTransparency = 0
       
-      -- Função para criar um ESP para jogadores
-      local function createESP(player)
-      local character = player.Character
-      if character then
-      for _, part in pairs(character:GetChildren()) do
-      if part:IsA("BasePart") then
-      local highlight = Instance.new("Highlight")
-      highlight.Parent = part
-      highlight.Adornee = part
-      highlight.FillColor = Color3.new(0, 0, 1) -- Azul
-      highlight.FillTransparency = 0.5
-      end
-      end
-      end
+      local CoreGui = game:FindService("CoreGui")
+      local Players = game:FindService("Players")
+      local lp = Players.LocalPlayer
+      local connections = {}
+      
+      local Storage = Instance.new("Folder")
+      Storage.Parent = CoreGui
+      Storage.Name = "Highlight_Storage"
+      
+      local function Highlight(plr)
+      local Highlight = Instance.new("Highlight")
+      Highlight.Name = plr.Name
+      Highlight.FillColor = FillColor
+      Highlight.DepthMode = DepthMode
+      Highlight.FillTransparency = FillTransparency
+      Highlight.OutlineColor = OutlineColor
+      Highlight.OutlineTransparency = 0
+      Highlight.Parent = Storage
+      
+      local plrchar = plr.Character
+      if plrchar then
+      Highlight.Adornee = plrchar
       end
       
-      -- Função para adicionar ESP para todos os jogadores atuais
-      local function addESPToAllPlayers()
-      for _, player in pairs(game.Players:GetPlayers()) do
-      createESP(player)
-      end
-      end
-      
-      -- Chama a função para adicionar ESP a todos os jogadores ao iniciar
-      addESPToAllPlayers()
-      
-      -- Adiciona o ESP para novos jogadores que entram no jogo
-      game.Players.PlayerAdded:Connect(function(player)
-      player.CharacterAdded:Connect(function(character)
-      createESP(player)
+      connections[plr] = plr.CharacterAdded:Connect(function(char)
+      Highlight.Adornee = char
       end)
+      end
+      
+      Players.PlayerAdded:Connect(Highlight)
+      for i,v in next, Players:GetPlayers() do
+      Highlight(v)
+      end
+      
+      Players.PlayerRemoving:Connect(function(plr)
+      local plrname = plr.Name
+      if Storage[plrname] then
+      Storage[plrname]:Destroy()
+      end
+      if connections[plr] then
+      connections[plr]:Disconnect()
+      end
       end)
-        
+      
     end
 })
 
