@@ -1,7 +1,7 @@
 local OrionLib = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Orion/main/source'))()
 
 local Window = OrionLib:MakeWindow({
-    Name = "Rael Hub : The mimic book 2 chapter 3",
+    Name = "Rael Hub | The mimic book 2 chapter 3",
     HidePremium = false,
     SaveConfig = true,
     ConfigFolder = "OrionTest"
