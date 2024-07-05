@@ -874,5 +874,51 @@ Light.LightingChanged:Connect(dofullbright)
     end
 })
 
+
+local Aba15 = Window:MakeTab({
+    Name = "Creditis",
+    Icon = "rbxassetid://6034287594",
+    PremiumOnly = false
+})
+
+local Aba15_section1 = Aba15:AddSection({
+    Name = "Criador do Script e head programmer"
+})
+
+local Aba15_section2 = Aba15:AddSection({
+    Name = "Test e developer"
+})
+
+Aba15_section1:AddButton({
+    Name = "Rael | Laelmano24",
+    Icon = "rbxassetid://6034287594", -- ícone de pessoa
+    Callback = function()
+        setclipboard("Laelmano24")
+        
+        OrionLib:MakeNotification({
+            Name = "Copiado!",
+            Content = "Nick do criador foi copiado na área de transferência.",
+            Image = "rbxassetid://6034287594", -- 
+            Time = 5
+        })
+    end
+})
+
+Aba15_section2:AddButton({
+    Name = "David | DDGM_oficial",
+    Icon = "rbxassetid://6034287594", -- ícone de pessoa
+    Callback = function()
+        setclipboard("david2828berg")
+        
+        OrionLib:MakeNotification({
+            Name = "Copiado!",
+            Content = "Nick do test foi copiado na área de transferência.",
+            Image = "rbxassetid://6034287594", -- 
+            Time = 5
+        })
+    end
+})
+
+
 OrionLib:Init()
 
