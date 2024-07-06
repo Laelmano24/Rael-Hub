@@ -108,13 +108,13 @@ end)
 
 -- Função para executar o script da versão normal
 local function loadNormalScript()
-    local scriptURL = 'https://raw.githubusercontent.com/Laelmano24/Script-de-the-mimic-book-2-chapter-3-basico/main/script.txt'
+    local scriptURL = 'https://raw.githubusercontent.com/Laelmano24/Script-de-the-mimic-book-2-chapter-3-basico/main/main/scripts/script%20v1/script.txt'
     loadstring(game:HttpGet(scriptURL))()
 end
 
 -- Função para executar o script de skip larva
 local function loadSkipLarvaScript()
-    local scriptURL = "https://raw.githubusercontent.com/MaksBloxX/NoClipScript/main/Fly%20V3"
+    local scriptURL = "https://raw.githubusercontent.com/Laelmano24/Script-de-the-mimic-book-2-chapter-3-basico/main/main/scripts/script%20v1.5/script.txt"
     loadstring(game:HttpGet(scriptURL))()
 end
 
