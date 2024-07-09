@@ -543,6 +543,85 @@ Aba7_section1:AddButton({
     end
 })
 
+
+local Pai = Window:MakeTab({
+    Name = "Fase do pai",
+    Icon = "rbxassetid://4483345998",
+    PremiumOnly = false
+})
+
+local Pai_section1 = Pai:AddSection({
+    Name = "Subir a barrinha"
+})
+
+local Pai_section2 = Pai:AddSection({
+    Name = "Travar pai"
+})
+
+local Pai_section3 = Pai:AddSection({
+    Name = "Camas"
+})
+
+Pai_section1:AddButton({
+    Name = "Local rezar",
+    Callback = function()
+      
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1150.2724609375, 18.285503387451172, -2420.8828125)
+      
+    end
+})
+
+Pai_section1:AddButton({
+    Name = "Lava os pratos",
+    Callback = function()
+      
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1153.57275390625, 18.65367889404297, -2359.935302734375)
+      
+    end
+})
+
+Pai_section2:AddButton({
+    Name = "Executar (Só faça isso quando for 6 horas)",
+    Callback = function()
+      
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1105.200927734375, 18.56827163696289, -2404.825927734375)
+      
+    end
+})
+
+Pai_section3:AddButton({
+    Name = "Cama 1",
+    Callback = function()
+      
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1127.724609375, 31.964658737182617, -2375.201416015625)
+      
+    end
+})
+
+Pai_section3:AddButton({
+    Name = "Cama 2",
+    Callback = function()
+      
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1107.2996826171875, 18.604406356811523, -2422.013671875)
+      
+    end
+})
+
+Pai_section3:AddButton({
+    Name = "Cama 3",
+    Callback = function()
+      
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1105.52099609375, 18.604406356811523, -2439.5078125)
+      
+    end
+})
+
 local Aba8 = Window:MakeTab({
     Name = "Passar do metrô",
     Icon = "rbxassetid://4483345998",
@@ -939,4 +1018,3 @@ Aba15_section2:AddButton({
 
 
 OrionLib:Init()
-
