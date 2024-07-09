@@ -198,6 +198,54 @@ local function Criarchao(position)
     end
 end
 
+local function criarInterface(tempo)
+    -- Crie uma tela de interface gráfica (ScreenGui)
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+    -- Crie um Frame para servir como fundo
+    local backgroundFrame = Instance.new("Frame")
+    backgroundFrame.Size = UDim2.new(1, 0, 1, 0) -- Tamanho total da tela
+    backgroundFrame.Position = UDim2.new(0, 0, 0, 0) -- Posição inicial da tela
+    backgroundFrame.BackgroundColor3 = Color3.new(0, 0, 0) -- Cor preta
+    backgroundFrame.BorderSizePixel = 0 -- Sem borda
+    backgroundFrame.Parent = screenGui
+
+    -- Função para criar um TextLabel com o texto especificado
+    local function criarTextLabel(texto, posY)
+        local textLabel = Instance.new("TextLabel")
+        textLabel.Size = UDim2.new(1, 0, 0.1, 0) -- Tamanho do TextLabel
+        textLabel.Position = UDim2.new(0, 0, posY, 0) -- Posição do texto
+        textLabel.BackgroundTransparency = 1 -- Fundo transparente
+        textLabel.Text = texto
+        textLabel.TextColor3 = Color3.fromRGB(47, 236, 154) -- Cor do texto (#2FEC9A)
+        textLabel.TextScaled = true -- Escalar o texto para caber no TextLabel
+        textLabel.Font = Enum.Font.SourceSansBold -- Fonte em negrito
+        textLabel.Parent = backgroundFrame
+    end
+
+    -- Criar cada texto na interface com pequeno espaçamento vertical
+    criarTextLabel("Siga Laelmano24 no Roblox🇧🇷", 0.3)
+    criarTextLabel("Follow Laelmano24 on Roblox 🇺🇲", 0.45)
+    criarTextLabel("Sigue Laelmano24 en Roblox 🇪🇸", 0.6)
+
+    -- Aguardar o tempo especificado
+    wait(tempo)
+
+    -- Acessar o serviço de chat
+    local chat = game:GetService("Chat")
+
+    -- Enviar cada mensagem no chat
+    chat:Chat(game.Players.LocalPlayer.Character.Head, "Siga Laelmano24 no Roblox🇧🇷", Enum.ChatColor.White)
+    wait(1)
+    chat:Chat(game.Players.LocalPlayer.Character.Head, "Follow Laelmano24 on Roblox 🇺🇲", Enum.ChatColor.White)
+    wait(1)
+    chat:Chat(game.Players.LocalPlayer.Character.Head, "Sigue Laelmano24 en Roblox 🇪🇸", Enum.ChatColor.White)
+
+    -- Destruir a interface
+    screenGui:Destroy()
+end
+
 local Autopassar = Window:MakeTab({
     Name = "Auto passar",
     Icon = "rbxassetid://4483345998",
@@ -213,7 +261,9 @@ Autopassar_section1:AddButton({
     Callback = function()
       
       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2372.278564453125, -3.087095260620117, 6150.95947265625)
-        
+      
+      criarInterface(3)
+      
     end
 })
 
