@@ -256,6 +256,15 @@ Aba10_section1:AddButton({
     end
 })
 
+Aba10_section1:AddButton({
+    Name = "Casa 4",
+    Callback = function()
+      
+      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1863.747314453125, 18.490339279174805, -467.3887634277344)
+        
+    end
+})
+
 local Aba11 = Window:MakeTab({
     Name = "Boss yurei",
     Icon = "rbxassetid://4483345998",
