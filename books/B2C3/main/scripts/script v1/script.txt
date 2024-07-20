@@ -1115,7 +1115,7 @@ Aba14_section1:AddButton({
     Name = "Executar",
     Callback = function()
       
-      loadstring(game:HttpGet('https://raw.githubusercontent.com/Laelmano24/Script-de-the-mimic-book-2-chapter-3-basico/main/main/function/function%20esp.txt'))()
+      loadstring(game:HttpGet"https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B2C3/main/function/function%20esp.txt")()
       
     end
 })

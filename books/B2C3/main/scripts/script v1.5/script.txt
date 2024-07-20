@@ -198,770 +198,86 @@ local function Criarchao(position)
     end
 end
 
-local function collectHearts()
-    local hearts = workspace.Section1.Puzzle.Hearts:GetChildren()
+local function criarInterface(tempo)
+    -- Crie uma tela de interface gráfica (ScreenGui)
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
-    -- Função para acionar o ProximityPrompt
-    local function simulateProximityPrompt(prompt)
-        fireproximityprompt(prompt)
-        print("ProximityPrompt acionado automaticamente")
+    -- Crie um Frame para servir como fundo
+    local backgroundFrame = Instance.new("Frame")
+    backgroundFrame.Size = UDim2.new(1, 0, 1, 0) -- Tamanho total da tela
+    backgroundFrame.Position = UDim2.new(0, 0, 0, 0) -- Posição inicial da tela
+    backgroundFrame.BackgroundColor3 = Color3.new(0, 0, 0) -- Cor preta
+    backgroundFrame.BorderSizePixel = 0 -- Sem borda
+    backgroundFrame.Parent = screenGui
+
+    -- Função para criar um TextLabel com o texto especificado
+    local function criarTextLabel(texto, posY)
+        local textLabel = Instance.new("TextLabel")
+        textLabel.Size = UDim2.new(1, 0, 0.1, 0) -- Tamanho do TextLabel
+        textLabel.Position = UDim2.new(0, 0, posY, 0) -- Posição do texto
+        textLabel.BackgroundTransparency = 1 -- Fundo transparente
+        textLabel.Text = texto
+        textLabel.TextColor3 = Color3.fromRGB(47, 236, 154) -- Cor do texto (#2FEC9A)
+        textLabel.TextScaled = true -- Escalar o texto para caber no TextLabel
+        textLabel.Font = Enum.Font.SourceSansBold -- Fonte em negrito
+        textLabel.Parent = backgroundFrame
     end
 
-    -- Loop para percorrer os corações e acionar o ProximityPrompt de cada um
-    for i, heart in ipairs(hearts) do
-        local proximityPrompt = heart.ProximityPrompt
-        simulateProximityPrompt(proximityPrompt)
-        wait(0.2) -- Espera 0.2 segundos antes de acionar o próximo
-    end
+    -- Criar cada texto na interface com pequeno espaçamento vertical
+    criarTextLabel("Siga Laelmano24 no Roblox🇧🇷", 0.3)
+    criarTextLabel("Follow Laelmano24 on Roblox 🇺🇲", 0.45)
+    criarTextLabel("Sigue Laelmano24 en Roblox 🇪🇸", 0.6)
+
+    -- Aguardar o tempo especificado
+    wait(tempo)
+
+    -- Acessar o serviço de chat
+    local chat = game:GetService("Chat")
+
+    -- Enviar cada mensagem no chat
+    chat:Chat(game.Players.LocalPlayer.Character.Head, "Siga Laelmano24 no Roblox🇧🇷", Enum.ChatColor.White)
+    wait(1)
+    chat:Chat(game.Players.LocalPlayer.Character.Head, "Follow Laelmano24 on Roblox 🇺🇲", Enum.ChatColor.White)
+    wait(1)
+    chat:Chat(game.Players.LocalPlayer.Character.Head, "Sigue Laelmano24 en Roblox 🇪🇸", Enum.ChatColor.White)
+
+    -- Destruir a interface
+    screenGui:Destroy()
 end
 
--- Função para criar ESP com parâmetro do monstro
-local runService = game:GetService("RunService")
-local camera = game:GetService("Workspace").CurrentCamera
-
-local function createESP(monster)
-    local espLine = nil
-    local espText = nil
-    local monsterHighlight = nil
-
-    -- Criar linha
-    espLine = Drawing.new("Line")
-    espLine.Color = Color3.fromRGB(255, 0, 0) -- Cor da linha (vermelho)
-    espLine.Thickness = 1 -- Espessura da linha
-    espLine.Transparency = 1 -- Transparência da linha (1 é totalmente visível)
-
-    -- Criar texto
-    espText = Drawing.new("Text")
-    espText.Color = Color3.fromRGB(255, 0, 0) -- Cor do texto (vermelho)
-    espText.Size = 20 -- Tamanho do texto
-    espText.Center = true
-    espText.Outline = true -- Contorno no texto
-    espText.OutlineColor = Color3.fromRGB(0, 0, 0) -- Cor do contorno do texto (preto)
-    espText.Text = monster.Name -- Nome do monstro como texto
-
-    -- Aplicar cor vermelha ao monstro
-    if monster:FindFirstChild("Hitbox") then
-        monsterHighlight = Instance.new("Highlight")
-        monsterHighlight.FillColor = Color3.fromRGB(255, 0, 0) -- Cor do ESP (vermelho)
-        monsterHighlight.FillTransparency = 0.5 -- Transparência do preenchimento (0 é opaco, 1 é transparente)
-        monsterHighlight.OutlineColor = Color3.fromRGB(0, 0, 0) -- Cor do contorno (preto)
-        monsterHighlight.OutlineTransparency = 0 -- Transparência do contorno (0 é opaco, 1 é transparente)
-        monsterHighlight.Parent = monster.Hitbox
-    end
-
-    local function updateESP()
-        if monster:FindFirstChild("Hitbox") and monster.Hitbox.Parent then
-            local hitboxPosition, onScreen = camera:WorldToViewportPoint(monster.Hitbox.Position)
-            if onScreen then
-                espLine.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y) -- Ponto inicial (centro inferior da tela)
-                espLine.To = Vector2.new(hitboxPosition.X, hitboxPosition.Y) -- Ponto final (hitbox)
-                espLine.Visible = true
-
-                espText.Position = Vector2.new(hitboxPosition.X, hitboxPosition.Y - 20) -- Posição do texto
-                espText.Visible = true
-            else
-                espLine.Visible = false
-                espText.Visible = false
-            end
-        else
-            espLine.Visible = false
-            espText.Visible = false
-        end
-    end
-
-    runService.RenderStepped:Connect(updateESP)
-
-    return {
-        Update = updateESP,
-        Remove = function()
-            espLine:Remove()
-            espText:Remove()
-            if monsterHighlight then
-                monsterHighlight:Destroy()
-            end
-        end
-    }
-end
-
-local Skip_cutscene = Window:MakeTab({
-    Name = "Skip cutscene",
+local Autopassar = Window:MakeTab({
+    Name = "Auto passar",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local Sc_section1 = Skip_cutscene:AddSection({
-    Name = "Pular a cutscene"
+local Autopassar_section1 = Autopassar:AddSection({
+    Name = "Ir para a casa da yurei"
 })
-Sc_section1:AddButton({
-    Name = "Pular cutscene",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-132.10032653808594, 45.51211929321289, 67.8162841796875)
-    end
-})
-
-local Aba1 = Window:MakeTab({
-    Name = "Fase dos corações",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local Aba1_section1 = Aba1:AddSection({
-    Name = "Pegar todos os corações"
-})
-
-Aba1_section1:AddButton({
-    Name = "Executar",
-    Callback = function()
-        local player = game.Players.LocalPlayer
-        local character = player.Character
-        local humanoidRootPart = character.HumanoidRootPart
-
-        humanoidRootPart.CFrame = CFrame.new(-108.7853775024414, 45.47053909301758, 18.404680252075195)
-        
-        collectHearts()
-        
-        wait(0.5)
-        humanoidRootPart.CFrame = CFrame.new(-24.40036964416504, 45.47053909301758, 38.82353973388672)
-        
-        collectHearts()
-        
-        wait(0.5)
-        
-        humanoidRootPart.CFrame = CFrame.new(-129.64842224121094, 45.47053909301758, 125.12348175048828)
-        
-        collectHearts()
-        
-        wait(0.5)
-        
-        humanoidRootPart.CFrame = CFrame.new(-89.36963653564453, 45.470542907714844, 11.732773780822754)
-        
-        wait(0.2)
-        
-        fireproximityprompt(workspace.Section1.Puzzle.SpinModel.armscare1.BeatingHeart.Heart.ProximityPrompt)
-        
-        wait(0.8)
-        
-        humanoidRootPart.CFrame = CFrame.new(-54.3888053894043, 45.470542907714844, 9.737892150878906)
-        
-        wait(0.2)
-        
-        fireproximityprompt(workspace.Section1.Puzzle.SpinModel.armscare3.BeatingHeart.Heart.ProximityPrompt)
-        
-        wait(0.8)
-        
-        humanoidRootPart.CFrame = CFrame.new(-71.12203979492188, 45.47053527832031, 27.382102966308594)
-        
-        wait(0.2)
-        
-        fireproximityprompt(workspace.Section1.Puzzle.SpinModel.armscare.BeatingHeart.Heart.ProximityPrompt)
-        
-        wait(0.8)
-        
-        humanoidRootPart.CFrame = CFrame.new(-73.55265045166016, 45.47053527832031, -7.073645114898682)
-        
-        wait(0.2)
-        
-        fireproximityprompt(workspace.Section1.Puzzle.SpinModel.armscare2.BeatingHeart.Heart.ProximityPrompt)
-        
-    end
-})
-
-local Aba2 = Window:MakeTab({
-    Name = "Correr do Djabo",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local Aba2_section1 = Aba2:AddSection({
-    Name = "Fugir do santanais"
-})
-
-Aba2_section1:AddButton({
-    Name = "Tenta passar",
-    Callback = function()
-      
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-71.9482650756836, 68.62309265136719, -152.9066162109375)
-        ShowText("Não se mover, o bypass está em andamento", 38)
-        congelar(38)
-        
-   
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-117.57471466064453, 45.63472366333008, -395.8871765136719)
-    end
-})
-
-local Aba3 = Window:MakeTab({
-    Name = "Tacar fogo no djabo",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local Aba3_section = Aba3:AddSection({
-    Name = "Esp Monstro"
-})
-
-local Aba3_section1 = Aba3:AddSection({
-    Name = "Área segura"
-})
-
-local Aba3_section2 = Aba3:AddSection({
-    Name = "Pegar itens"
-})
-
-local Aba3_section3 = Aba3:AddSection({
-    Name = "Incendiar a tocha"
-})
-
-local Aba3_section4 = Aba3:AddSection({
-    Name = "Passar do portão"
-})
-
-Aba3_section:AddButton({
-    Name = "Esp GrinDemon",
-    Callback = function()
-        
-      local monster = game:GetService("Workspace").Section1.Maze.GrinDemon
-      
-      local esp = createESP(monster) 
-        
-      end
-})
-
-Aba3_section1:AddButton({
-    Name = "Safe zone",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-78.55948638916016, 3.999999523162842, -424.7477722167969)
-    end
-})
-
-Aba3_section2:AddButton({
-    Name = "Item 1",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-75.57953643798828, 3.999999523162842, -600.0673217773438)
-    end
-})
-
-Aba3_section2:AddButton({
-    Name = "Item 2",  
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-188.1136016845703, 4.05402135848999, -517.3660278320312)
-    end
-})
-
-Aba3_section2:AddButton({
-    Name = "Item 3",  
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-17.140830993652344, 4, -479.48321533203125)
-    end
-})
-
-Aba3_section2:AddButton({
-    Name = "Item 4",  
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-193.0465087890625, 4, -756.7428588867188)
-    end
-})
-
-Aba3_section3:AddButton({
-    Name = "Incendiar tocha",  
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-185.9717254638672, 3.9999992847442627, -800.3792724609375)
-          
-          wait(0.7)
-          
-         fireproximityprompt(workspace.Section1.Maze.Crafting.ArmFlames:GetChildren()[3].UndyingFlame.ProximityPrompt)
-          
-          wait(0.2)
-          
-         fireproximityprompt(workspace.Section1.Maze.Crafting.ArmFlames:GetChildren()[4].UndyingFlame.ProximityPrompt)
-          
-          wait(0.2)
-          
-         fireproximityprompt(workspace.Section1.Maze.Crafting.ArmFlames:GetChildren()[2].UndyingFlame.ProximityPrompt)
-          
-          wait(0.2)
-          
-         fireproximityprompt(workspace.Section1.Maze.Crafting.ArmFlames:GetChildren()[1].UndyingFlame.ProximityPrompt)
-          
-          wait(0.3)
-          
-          game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-78.55948638916016, 3.999999523162842, -424.7477722167969)
-          
-    end
-})
-
-Aba3_section4:AddButton({
-    Name = "Tp porta (Só quando você matar o Djabo)",
-    Callback = function()
-        
-        
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-75.16085052490234, 6.037174701690674, -884.1526489257812)
-        
-        congelar(1)
-        
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-327.4331359863281, 6.585247039794922, -1067.4490966796875)
-        
-        wait(0.2)
-        
-        
-        local Position = Vector3.new(-326.3927001953125, 6.585247039794922, -1112.235107421875)
-      
-        local Velocidade = 60
-      
-        FlyToPosition(Position, Velocidade)
-        
-        
-    end
-})
-
-local Aba4 = Window:MakeTab({
-    Name = "Fase dos sinos",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local Aba4_section = Aba4:AddSection({
-    Name = "Esp Monstro"
-})
-
-local Aba4_section1 = Aba4:AddSection({
-    Name = "Teleportar nos sinos"
-})
-
-local Aba4_section2 = Aba4:AddSection({
-    Name = "Teleportar para as portas"
-})
-
-Aba4_section:AddButton({
-    Name = "Esp Dodomeki",
-    Callback = function()
-        
-      local monster = game:GetService("Workspace").Section2.Monster.Dodomeki
-      
-      local esp = createESP(monster) 
-        
-      end
-})
-
-Aba4_section1:AddButton({
-    Name = "Sino 1",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-387.5111389160156, 10.257816314697266, -1343.7481689453125)
-    end
-})
-
-Aba4_section1:AddButton({
-    Name = "Sino 2",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-503.5439453125, 11.307804107666016, -1439.5289306640625)
-    end
-})
-
-Aba4_section1:AddButton({
-    Name = "Sino 3",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-355.8379821777344, 8.421131134033203, -1699.8572998046875)
-    end
-})
-
-Aba4_section1:AddButton({
-    Name = "Sino 4",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-679.4843139648438, 8.826726913452148, -2039.6744384765625)
-    end
-})
-
-Aba4_section1:AddButton({
-    Name = "Sino 5",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1013.0804443359375, 8.999998092651367, -1964.8438720703125)
-    end
-})
-
-Aba4_section1:AddButton({
-    Name = "Sino 6",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-780.34326171875, 18.859134674072266, -1716.7041015625)
-    end
-})
-
-Aba4_section2:AddButton({
-    Name = "Portão 1",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-868.7260131835938, 8.999996185302734, -1702.6456298828125)
-    end
-})
-
-Aba4_section2:AddButton({
-    Name = "Portão 2",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-438.0998229980469, 11.123943328857422, -1909.980712890625)
-    end
-})
-
-Aba4_section2:AddButton({
-    Name = "Portão 3",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-244.1696014404297, 8.999998092651367, -1170.60498046875)
-    end
-})
-
-Aba4_section2:AddButton({
-    Name = "Portão 4",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1021.5662231445312, 8.999998092651367, -1924.338134765625)
-    end
-})
-
-local Aba5 = Window:MakeTab({
-    Name = "Correr do poste",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local Aba5_section1 = Aba5:AddSection({
-    Name = "Correr do boneco de posto"
-})
-
-Aba5_section1:AddButton({
-    Name = "Passar do boneco de Olinda",
-    Callback = function()
-      
-      
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4176.052734375, 44.40174865722656, -1955.488037109375)
-        
-        
-        ShowText("Não se mover, o bypass está em andamento", 28)
-        congelar(28)
-        
-        
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4369.65478515625, -47.93013381958008, -2040.0382080078125)
-        
-        
-        wait(4)
-        
-        
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-4176.052734375, 44.40174865722656, -1955.488037109375)
-        
-        
-        ShowText("Não se mover, o bypass está em andamento", 48)
-        congelar(48)
-        
-        
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-3876.863525390625, -82.5667953491211, -2291.44384765625)
-    end
-})
-
-local Aba6 = Window:MakeTab({
-    Name = "Enzuzai",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local Aba6_section1 = Aba6:AddSection({
-    Name = "Passar rápido"
-})
-
-local Aba6_section2 = Aba6:AddSection({
-    Name = "Facilitar sua vida"
-})
-
-Aba6_section1:AddButton({
-    Name = "Andar rápido",
-    Callback = function()
-        
-        
-        -- Exemplo de uso da função FlyTo
-        local destino = Vector3.new(4242.802734375, 7.000011920928955, -2519.427001953125)
-        
-        
-        -- Defina as coordenadas de destino
-        local velocidade = 50  
-        
-        
-        -- Defina a velocidade do voo
-        FlyTo(destino, velocidade)
-        
-        
-    end
-})
-
-Aba6_section2:AddButton({
-    Name = "Executar",
-    Callback = function()
-    
-      Criarchao(Vector3.new(2523.459228515625, 31.182363510131836, -1885.0631103515625))
-      
-      wait(0.4)
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2523.730712890625, 40.67369842529297, -1884.3419189453125)
-        
-    end
-})
-
-local Aba7 = Window:MakeTab({
-    Name = "Tp casa",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local Aba7_section1 = Aba7:AddSection({
-    Name = "Teleportar"
-})
-
-Aba7_section1:AddButton({
-    Name = "Andar rápido",
-    Callback = function()
-      
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1134.19775390625, 18.6281795501709, -2356.963623046875)
-      
-    end
-})
-
-
-local Pai = Window:MakeTab({
-    Name = "Fase do pai",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local Pai_section1 = Pai:AddSection({
-    Name = "Subir a barrinha"
-})
-
-local Pai_section2 = Pai:AddSection({
-    Name = "Travar pai"
-})
-
-local Pai_section3 = Pai:AddSection({
-    Name = "Camas"
-})
-
-Pai_section1:AddButton({
-    Name = "Local rezar",
-    Callback = function()
-      
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1150.2724609375, 18.285503387451172, -2420.8828125)
-      
-    end
-})
-
-Pai_section1:AddButton({
-    Name = "Lava os pratos",
-    Callback = function()
-      
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1153.57275390625, 18.65367889404297, -2359.935302734375)
-      
-    end
-})
-
-Pai_section2:AddButton({
-    Name = "Executar (Só faça isso quando for 6 horas)",
-    Callback = function()
-      
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1105.200927734375, 18.56827163696289, -2404.825927734375)
-      
-      OrionLib:MakeNotification({
-        Name = "Atenção!",
-        Content = "Só saia dai quando o pai bugar",
-        Image = "rbxassetid://6031071053", -- ID do ícone de atenção
-        Time = 15
-        })
-      
-    end
-})
-
-Pai_section3:AddButton({
-    Name = "Cama 1",
-    Callback = function()
-      
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1127.724609375, 31.964658737182617, -2375.201416015625)
-      
-    end
-})
-
-Pai_section3:AddButton({
-    Name = "Cama 2",
-    Callback = function()
-      
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1107.2996826171875, 18.604406356811523, -2422.013671875)
-      
-    end
-})
-
-Pai_section3:AddButton({
-    Name = "Cama 3",
-    Callback = function()
-      
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1105.52099609375, 18.604406356811523, -2439.5078125)
-      
-    end
-})
-
-local Aba8 = Window:MakeTab({
-    Name = "Passar do metrô",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local Aba8_section1 = Aba8:AddSection({
-    Name = "Executar"
-})
-
-Aba8_section1:AddButton({
-    Name = "Executar",
-    Callback = function()
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2107.757568359375, -7.4249773025512695, 2258.908447265625)
-      
-      congelar(1)
-      
-      local Position = Vector3.new(2319.43310546875, -7.473430633544922, 2262.974365234375)
-      
-      local Velocidade = 50
-      
-      FlyToPosition(Position, Velocidade)
-      
-      wait(5)
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2364.91357421875, -7.28995943069458, 2248.90087890625)
-      
-      wait(1)
-      
-      FlyToPosition(Position, Velocidade)
-      
-      wait(2)
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2364.91357421875, -7.28995943069458, 2248.90087890625)
-        
-    end
-})
-
-local Aba9 = Window:MakeTab({
-    Name = "Fase das larvas",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local Aba9_section = Aba9:AddSection({
-    Name = "Esp Monstro"
-})
-
-local Aba9_section1 = Aba9:AddSection({
-    Name = "Safe zone"
-})
-
-local Aba9_section2 = Aba9:AddSection({
-    Name = "Larvas"
-})
-
-local Aba9_section3 = Aba9:AddSection({
-    Name = "Bixo feio"
-})
-
-Aba9_section:AddButton({
-    Name = "Esp Boogeyman",
-    Callback = function()
-      
-      local monster = game:GetService("Workspace").Section4.Monster.BoogeymanAI
-      
-      local esp = createESP(monster) 
-        
-    end
-})
-
-Aba9_section1:AddButton({
-    Name = "Executar",
-    Callback = function()
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1491.93408203125, 8.99999713897705, 4141.634765625)
-        
-    end
-})
-
-Aba9_section2:AddButton({
-    Name = "Larva 1",
-    Callback = function()
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1536.918701171875, 3.1784982681274414, 4248.04345703125)
-        
-    end
-})
-
-Aba9_section2:AddButton({
-    Name = "Larva 2",
-    Callback = function()
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1659.2425537109375, 3.7213003635406494, 4162.61083984375)
-      
-      
-        
-    end
-})
-
-Aba9_section2:AddButton({
-    Name = "Larva 3",
-    Callback = function()
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1694.6314697265625, 18.159862518310547, 4411.02392578125)
-        
-    end
-})
-
-Aba9_section2:AddButton({
-    Name = "Larva 4",
-    Callback = function()
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1720.5401611328125, 0.7872464656829834, 4401.8095703125)
-        
-    end
-})
-
-Aba9_section3:AddButton({
-    Name = "Tp bixo feio",
-    Callback = function()
-      
-      game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(1937.4410400390625, 17.371686935424805, 4643.7734375)
-        
-    end
-})
-
-local Aba10 = Window:MakeTab({
-    Name = "Fase do tolote",
-    Icon = "rbxassetid://4483345998",
-    PremiumOnly = false
-})
-
-local Aba10_section1 = Aba10:AddSection({
-    Name = "Passar logo"
-})
 
-Aba10_section1:AddButton({
+Autopassar_section1:AddButton({
     Name = "Executar",
     Callback = function()
       
       game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(2372.278564453125, -3.087095260620117, 6150.95947265625)
-        
+      
+      criarInterface(3)
+      
     end
 })
 
-local Aba11 = Window:MakeTab({
+local Aba10 = Window:MakeTab({
     Name = "Tp casa da yurei",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local Aba11_section1 = Aba11:AddSection({
+local Aba10_section1 = Aba10:AddSection({
     Name = "Teleportar casinha"
 })
 
-Aba11_section1:AddButton({
+Aba10_section1:AddButton({
     Name = "Casa 1",
     Callback = function()
       
@@ -972,7 +288,7 @@ Aba11_section1:AddButton({
 
 
 
-Aba11_section1:AddButton({
+Aba10_section1:AddButton({
     Name = "Casa 2",
     Callback = function()
       
@@ -981,7 +297,7 @@ Aba11_section1:AddButton({
     end
 })
 
-Aba11_section1:AddButton({
+Aba10_section1:AddButton({
     Name = "Casa 3",
     Callback = function()
       
@@ -990,7 +306,7 @@ Aba11_section1:AddButton({
     end
 })
 
-Aba11_section1:AddButton({
+Aba10_section1:AddButton({
     Name = "Casa 4",
     Callback = function()
       
@@ -999,7 +315,7 @@ Aba11_section1:AddButton({
     end
 })
 
-Aba11_section1:AddButton({
+Aba10_section1:AddButton({
     Name = "Casa 5",
     Callback = function()
       
@@ -1008,17 +324,17 @@ Aba11_section1:AddButton({
     end
 })
 
-local Aba12 = Window:MakeTab({
+local Aba11 = Window:MakeTab({
     Name = "Boss yurei",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local Aba12_section1 = Aba12:AddSection({
+local Aba11_section1 = Aba11:AddSection({
     Name = "Voar"
 })
 
-Aba12_section1:AddButton({
+Aba11_section1:AddButton({
     Name = "Fly (velocidade recomendada: 1)",
     Callback = function()
       
@@ -1027,21 +343,21 @@ Aba12_section1:AddButton({
     end
 })
 
-local Aba13 = Window:MakeTab({
+local Aba12 = Window:MakeTab({
     Name = "Fase final",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local Aba13_section1 = Aba13:AddSection({
+local Aba12_section1 = Aba12:AddSection({
     Name = "Passar a parte de andar"
 })
 
-local Aba13_section2 = Aba13:AddSection({
+local Aba12_section2 = Aba12:AddSection({
     Name = "Correr sozinho"
 })
 
-Aba13_section1:AddButton({
+Aba12_section1:AddButton({
     Name = "Executar",
     Callback = function()
       
@@ -1054,7 +370,7 @@ Aba13_section1:AddButton({
     end
 })
 
-Aba13_section2:AddButton({
+Aba12_section2:AddButton({
     Name = "Passar",
     Callback = function()
     
@@ -1078,30 +394,30 @@ Aba13_section2:AddButton({
     end
 })
 
-local Aba14 = Window:MakeTab({
+local Aba13 = Window:MakeTab({
     Name = "Outros",
     Icon = "rbxassetid://4483345998",
     PremiumOnly = false
 })
 
-local Aba14_section1 = Aba14:AddSection({
-    Name = "Esp player"
+local Aba13_section1 = Aba13:AddSection({
+    Name = "Esp"
 })
 
-local Aba14_section2 = Aba14:AddSection({
+local Aba13_section2 = Aba13:AddSection({
     Name = "FullBright"
 })
 
-Aba14_section1:AddButton({
-    Name = "Executar",
+Aba13_section1:AddButton({
+    Name = "Esp player",
     Callback = function()
-      
-      loadstring(game:HttpGet('https://raw.githubusercontent.com/Laelmano24/Script-de-the-mimic-book-2-chapter-3-basico/main/main/function/function%20esp.txt'))()
+    
+      loadstring(game:HttpGet"https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B2C3/main/function/function%20esp.txt")()
       
     end
 })
 
-Aba14_section2:AddButton({
+Aba13_section2:AddButton({
     Name = "FullBright",
     Callback = function()
       
@@ -1121,21 +437,21 @@ Light.LightingChanged:Connect(dofullbright)
 })
 
 
-local Aba15 = Window:MakeTab({
+local Aba14 = Window:MakeTab({
     Name = "Creditis",
     Icon = "rbxassetid://6034287594",
     PremiumOnly = false
 })
 
-local Aba15_section1 = Aba15:AddSection({
+local Aba14_section1 = Aba14:AddSection({
     Name = "Criador do Script e head programmer"
 })
 
-local Aba15_section2 = Aba15:AddSection({
+local Aba14_section2 = Aba14:AddSection({
     Name = "Test e developer"
 })
 
-Aba15_section1:AddButton({
+Aba14_section1:AddButton({
     Name = "Rael | Laelmano24",
     Icon = "rbxassetid://6034287594", -- ícone de pessoa
     Callback = function()
@@ -1150,7 +466,7 @@ Aba15_section1:AddButton({
     end
 })
 
-Aba15_section2:AddButton({
+Aba14_section2:AddButton({
     Name = "David | DDGM_oficial",
     Icon = "rbxassetid://6034287594", -- ícone de pessoa
     Callback = function()
@@ -1167,3 +483,4 @@ Aba15_section2:AddButton({
 
 
 OrionLib:Init()
+
