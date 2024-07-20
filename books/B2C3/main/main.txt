@@ -1,0 +1,157 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = playerGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.7, 0, 0.6, 0)
+frame.Position = UDim2.new(0.15, 0, 0.2, 0)
+frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+frame.BorderSizePixel = 0
+frame.Parent = screenGui
+
+-- Adiciona CornerRadius ao frame
+local frameCorner = Instance.new("UICorner")
+frameCorner.CornerRadius = UDim.new(0, 10)
+frameCorner.Parent = frame
+
+local padding = Instance.new("UIPadding")
+padding.PaddingTop = UDim.new(0, 20)
+padding.PaddingBottom = UDim.new(0, 20)
+padding.PaddingLeft = UDim.new(0, 20)
+padding.PaddingRight = UDim.new(0, 20)
+padding.Parent = frame
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, -40, 0.2, 0)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.BackgroundTransparency = 1
+title.Text = "Rael hub"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.Font = Enum.Font.ArialBold
+title.TextScaled = true
+title.Parent = frame
+
+local description = Instance.new("TextLabel")
+description.Size = UDim2.new(1, -40, 0.2, 0)
+description.Position = UDim2.new(0, 0, 0.2, 0)
+description.BackgroundTransparency = 1
+description.Text = "Você deseja escolher quais versões do script?"
+description.TextColor3 = Color3.fromRGB(255, 255, 255)
+description.Font = Enum.Font.Arial
+description.TextSize = 20  -- Define o tamanho do texto
+description.TextStrokeTransparency = 0.8  -- Adiciona um contorno no texto para simular o peso
+description.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+description.Parent = frame
+
+local descriptionPadding = Instance.new("UIPadding")
+descriptionPadding.PaddingTop = UDim.new(0, 5)
+descriptionPadding.PaddingBottom = UDim.new(0, 5)
+descriptionPadding.PaddingLeft = UDim.new(0, 5)
+descriptionPadding.PaddingRight = UDim.new(0, 5)
+descriptionPadding.Parent = description
+
+local buttonContainer = Instance.new("Frame")
+buttonContainer.Size = UDim2.new(1, -40, 0.2, 0)
+buttonContainer.Position = UDim2.new(0, 0, 0.6, 0)
+buttonContainer.BackgroundTransparency = 1
+buttonContainer.Parent = frame
+
+local button1 = Instance.new("TextButton")
+button1.Size = UDim2.new(0.4, -10, 1, 0)
+button1.Position = UDim2.new(0.1, 0, 0, 0)
+button1.BackgroundColor3 = Color3.fromRGB(34, 168, 110)
+button1.Text = "Versão normal"
+button1.TextColor3 = Color3.fromRGB(255, 255, 255)
+button1.Font = Enum.Font.ArialBold
+button1.TextSize = 18  -- Define o tamanho do texto
+button1.AutoButtonColor = false
+button1.Parent = buttonContainer
+
+-- Adiciona CornerRadius ao button1
+local button1Corner = Instance.new("UICorner")
+button1Corner.CornerRadius = UDim.new(0, 10)
+button1Corner.Parent = button1
+
+local button2 = Instance.new("TextButton")
+button2.Size = UDim2.new(0.4, -10, 1, 0)
+button2.Position = UDim2.new(0.5, 0, 0, 0)
+button2.BackgroundColor3 = Color3.fromRGB(34, 168, 110)
+button2.Text = "Versão de auto passar"
+button2.TextColor3 = Color3.fromRGB(255, 255, 255)
+button2.Font = Enum.Font.ArialBold
+button2.TextSize = 18  -- Define o tamanho do texto
+button2.AutoButtonColor = false
+button2.Parent = buttonContainer
+
+-- Adiciona CornerRadius ao button2
+local button2Corner = Instance.new("UICorner")
+button2Corner.CornerRadius = UDim.new(0, 10)
+button2Corner.Parent = button2
+
+-- Adiciona o botão de fechar
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(0, 40, 0, 40)
+closeButton.Position = UDim2.new(1, -50, 0, 10)
+closeButton.BackgroundTransparency = 1
+closeButton.Text = "X"
+closeButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+closeButton.Font = Enum.Font.ArialBold
+closeButton.TextSize = 24
+closeButton.Parent = frame
+
+closeButton.MouseButton1Click:Connect(function()
+    screenGui:Destroy()  -- Fecha a interface ao clicar no botão de fechar
+end)
+
+-- Função para animar a cor do texto do título
+local function animateTextColor(label)
+    while true do
+        for hue = 0, 1, 0.01 do
+            label.TextColor3 = Color3.fromHSV(hue, 1, 1)
+            wait(0.05)
+        end
+    end
+end
+
+-- Iniciar a animação de cor do título
+spawn(function()
+    animateTextColor(title)
+end)
+
+-- Função para executar o script da versão normal
+local function loadNormalScript()
+    local scriptURL = 'https://raw.githubusercontent.com/Laelmano24/Script-de-the-mimic-book-2-chapter-3-basico/main/main/scripts/script%20v1/script.txt'
+    loadstring(game:HttpGet(scriptURL))()
+end
+
+-- Função para executar o script de skip larva
+local function loadSkipLarvaScript()
+    local scriptURL = "https://raw.githubusercontent.com/Laelmano24/The-mimic-script/books/B2C3/main/scripts/script v1.5/script.txt"
+    loadstring(game:HttpGet(scriptURL))()
+end
+
+-- Função para animar os botões e executar o script correto
+local function animateButtonClick(button)
+    button.MouseButton1Click:Connect(function()
+        button.BackgroundColor3 = Color3.fromRGB(47, 236, 154)
+        button.BorderSizePixel = 2
+        button.BorderColor3 = Color3.fromRGB(255, 255, 255)
+        wait(0.2)
+        button.BackgroundColor3 = Color3.fromRGB(34, 168, 110)
+        button.BorderSizePixel = 0
+        if button == button1 then
+            loadNormalScript()  -- Executa o script da versão normal
+            frame.Visible = false  -- Esconde o frame ao clicar no botão
+        elseif button == button2 then
+            loadSkipLarvaScript()  -- Executa o script de skip larva
+            frame.Visible = false  -- Esconde o frame ao clicar no botão
+        end
+    end)
+end
+
+-- Aplicar animação aos botões
+animateButtonClick(button1)
+animateButtonClick(button2)
