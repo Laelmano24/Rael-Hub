@@ -1,0 +1,10 @@
+local mapId = game.PlaceId
+
+if mapId == 15962819441 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B2C3/main/main.txt"))()
+    
+elseif mapId == 15962819441 then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B2C3/main/main.txt"))()
+else
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MaksBloxX/NoClipScript/main/Fly%20V3", true))()
+end
