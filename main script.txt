@@ -1,0 +1,273 @@
+local function criarInterface(texto, textbuttom, MapId)
+    -- Cria a tela preta
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "RaelHubGui"
+    screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+    -- Cria o quadro principal
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(0.8, 0, 0.8, 0)
+    frame.Position = UDim2.new(0.1, 0, 0.1, 0)
+    frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+    frame.BorderSizePixel = 0
+    frame.ClipsDescendants = true
+    frame.Parent = screenGui
+
+    -- Adiciona borda arredondada ao frame
+    local cornerFrame = Instance.new("UICorner")
+    cornerFrame.CornerRadius = UDim.new(0, 12)
+    cornerFrame.Parent = frame
+
+    -- Adiciona padding ao frame
+    local padding = Instance.new("UIPadding")
+    padding.PaddingTop = UDim.new(0, 20)
+    padding.PaddingBottom = UDim.new(0, 20)
+    padding.PaddingLeft = UDim.new(0, 20)
+    padding.PaddingRight = UDim.new(0, 20)
+    padding.Parent = frame
+
+    -- Cria o título
+    local title = Instance.new("TextLabel")
+    title.Size = UDim2.new(1, 0, 0.2, 0)
+    title.Position = UDim2.new(0, 0, 0, 0)
+    title.BackgroundTransparency = 1
+    title.TextColor3 = Color3.fromRGB(34, 168, 110)
+    title.TextSize = 36
+    title.Text = "Rael Hub"
+    title.TextStrokeTransparency = 0.8
+    title.TextScaled = true
+    title.Parent = frame
+
+    -- Cria o parágrafo
+    local paragraph = Instance.new("TextLabel")
+    paragraph.Size = UDim2.new(1, 0, 0.4, 0)
+    paragraph.Position = UDim2.new(0, 0, 0.2, 0)
+    paragraph.BackgroundTransparency = 1
+    paragraph.TextColor3 = Color3.fromRGB(255, 255, 255)
+    paragraph.TextSize = 20
+    paragraph.Text = texto
+    paragraph.TextStrokeTransparency = 0.8
+    paragraph.TextWrapped = true
+    paragraph.Parent = frame
+
+    -- Cria o botão
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0.5, 0, 0.2, 0)
+    button.Position = UDim2.new(0.25, 0, 0.6, 0)
+    button.BackgroundColor3 = Color3.fromRGB(34, 168, 110)
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.TextSize = 24
+    button.Text = textbuttom
+    button.TextStrokeTransparency = 0.8
+    button.BorderSizePixel = 0
+    button.BackgroundTransparency = 0
+    button.BorderColor3 = Color3.fromRGB(255, 255, 255)
+    button.Parent = frame
+
+    -- Adiciona borda arredondada ao botão
+    local cornerButton = Instance.new("UICorner")
+    cornerButton.CornerRadius = UDim.new(0, 12)
+    cornerButton.Parent = button
+
+    -- Cria o botão de fechar (X)
+    local closeButton = Instance.new("TextButton")
+    closeButton.Size = UDim2.new(0.1, 0, 0.1, 0)
+    closeButton.Position = UDim2.new(0.9, 0, 0, 0)
+    closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    closeButton.TextSize = 24
+    closeButton.Text = "X"
+    closeButton.TextStrokeTransparency = 0.8
+    closeButton.BorderSizePixel = 0
+    closeButton.BackgroundTransparency = 0
+    closeButton.BorderColor3 = Color3.fromRGB(255, 255, 255)
+    closeButton.ZIndex = 2
+    closeButton.Parent = frame
+
+    -- Adiciona borda arredondada ao botão de fechar
+    local cornerCloseButton = Instance.new("UICorner")
+    cornerCloseButton.CornerRadius = UDim.new(0, 6)
+    cornerCloseButton.Parent = closeButton
+
+    -- Adiciona efeito de hover
+    closeButton.MouseEnter:Connect(function()
+        closeButton.BackgroundColor3 = Color3.fromRGB(200, 0, 0)
+    end)
+    closeButton.MouseLeave:Connect(function()
+        closeButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    end)
+
+    -- Função para fechar a interface
+    local function fecharInterface()
+        screenGui:Destroy()
+    end
+
+    -- Conecta a função ao clique do botão de fechar
+    closeButton.MouseButton1Click:Connect(fecharInterface)
+
+    -- Função para teleportar o jogador
+    local function entrarNoJogo()
+        local placeId = MapId -- ID do mapa que você quer entrar
+        game:GetService("TeleportService"):Teleport(placeId, game.Players.LocalPlayer)
+    end
+
+    -- Conecta a função ao clique do botão
+    button.MouseButton1Click:Connect(entrarNoJogo)
+
+    -- Adiciona o TweenService
+    local tweenService = game:GetService("TweenService")
+
+    -- Função para mudar a cor do título
+    local function mudarCorDoTitulo()
+        local cores = {
+            Color3.fromRGB(47, 236, 154),  -- Cor1: #2FEC9A
+            Color3.fromRGB(34, 168, 110),  -- Cor2: #22A86E
+            Color3.fromRGB(27, 134, 88),   -- Cor3: #1B8658
+            Color3.fromRGB(8, 40, 26)      -- Cor4: #08281A
+        }
+
+        local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true)  -- Tempo aumentado para suavizar a transição
+        local tweenGoal = {TextColor3 = cores[1]}
+        
+        local tween = tweenService:Create(title, tweenInfo, tweenGoal)
+        tween:Play()
+        
+        -- Alterna as cores
+        while true do
+            for _, cor in ipairs(cores) do
+                tweenGoal.TextColor3 = cor
+                tween:Play()
+                wait(2)  -- Tempo de exibição da cor antes de mudar
+            end
+        end
+    end
+
+    -- Inicia a mudança de cor
+    mudarCorDoTitulo()
+end
+
+local mapId = game.PlaceId
+
+local the_mimic_lobby = 6243699076
+
+local B1C1_Part1 = {
+    normal = 6296321810,
+    nightmare = 6479231833
+}
+
+local B1C1_Part2 = {
+    normal = 6301638949,
+    nightmare = 6480994221
+}
+
+local B1C2_Part1 = {
+    normal = 6373539583,
+    nightmare = 6485055338
+}
+
+local B1C2_Part2 = {
+    normal = 6406571212,
+    nightmare = 6485055836
+}
+
+local B1C2_Part3 = {
+    normal = 6425178683,
+    nightmare = 6485056556
+}
+
+local B1C3_Part1 = {
+    normal = 6472459099,
+    nightmare = 6688734180
+}
+
+local B1C3_Part2 = {
+    normal = 6682163754,
+    nightmare = 6688734313
+}
+
+local B1C3_Part3 = {
+    normal = 6682164423,
+    nightmare = 6688734395
+}
+
+local TWT_Part1 = {
+
+  normal = 7068738088,
+  nigthmare = 7068951438
+  
+}
+
+local TWT_Part2 = {
+
+  normal = 7068739000,
+  nigthmare = 7068951914
+  
+}
+
+local TWT_Part3 = {
+
+  normal = 7068740106,
+  nigthmare = 7068952294
+  
+}
+
+local Jigoku = 7618863566
+
+local B2C3 = 15962819441
+
+if mapId == the_mimic_lobby then
+
+  criarInterface("Use o script dentro dos capítulos. Gostaria de jogar o modo Jigoku?", "sim", 7618863566)
+
+elseif mapId == B1C1_Part1.normal or mapId == B1C1_Part1.nightmare then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B1C1/script.txt"))()
+    
+elseif mapId == B1C1_Part2.normal or mapId == B1C1_Part2.nightmare then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B1C1/script.txt"))()
+
+elseif mapId == B1C2_Part1.normal or mapId == B1C2_Part1.nightmare then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B1C2/script.txt"))()
+    
+elseif mapId == B1C2_Part2.normal or mapId == B1C2_Part2.nightmare then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B1C2/script.txt"))()
+    
+elseif mapId == B1C2_Part3.normal or mapId == B1C2_Part3.nightmare then
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B1C2/script.txt"))()
+    
+elseif mapId == B1C3_Part1.normal or mapId == B1C2_Part1.nightmare then
+    
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B1C3/script.txt"))()
+    
+elseif mapId == B1C3_Part2.normal or mapId == B1C2_Part2.nightmare then
+    
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B1C3/script.txt"))()
+    
+elseif mapId == B1C3_Part3.normal or mapId == B1C2_Part3.nightmare then
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B1C3/script.txt"))()
+    
+elseif mapId == TWT_Part1.normal or mapId == TWT_Part1.nightmare then
+    
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/TWT/script.txt"))()
+    
+elseif mapId == TWT_Part2.normal or mapId == TWT_Part2.nightmare then
+    
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/TWT/script.txt"))()
+    
+elseif mapId == TWT_Part3.normal or mapId == TWT_Part3.nightmare then
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/TWT/script.txt"))()
+    
+elseif mapId == Jigoku then
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B2C3/main/main.txt"))()
+    
+elseif mapId == B2C3 then
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B2C3/main/main.txt"))()
+    
+else
+    
+    criarInterface("O script não funciona aqui :(", "Entrar no the mimic", 6243699076)
+    
+end
