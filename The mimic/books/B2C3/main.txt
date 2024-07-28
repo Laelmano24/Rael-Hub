@@ -1,0 +1,185 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local Paragrafo = ""
+local btn1 = ""
+local btn2 = ""
+
+
+local locale = player.LocaleId:lower()
+
+if locale == "pt-br" then
+  
+  Paragrafo = "Você deseja escolher quais versões do script ?"
+  btn1 = "Normal"
+  btn2 = "Auto casa yurei"
+  
+elseif locale == "en-us" then
+  
+  Paragrafo = "Do you want to choose which versions of the script ?"
+  btn1 = "Normal"
+  btn2 = "Auto house yurei"
+  
+elseif locale:sub(1, 2) == "es" then
+  
+  Paragrafo = "¿Quieres elegir qué versiones del script?"
+  btn1 = "Normal"
+  btn2 = "Auto casa yurei"
+  
+  
+else
+  
+  Paragrafo = "Do you want to choose which versions of the script ?"
+  btn1 = "Normal"
+  btn2 = "Auto house yurei"
+  
+  
+end
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Parent = playerGui
+
+local imageLabel = Instance.new("ImageLabel")
+imageLabel.Size = UDim2.new(0.7, 0, 0.6, 0)
+imageLabel.Position = UDim2.new(0.15, 0, 0.2, 0)
+imageLabel.Image = "rbxassetid://18665679839"
+imageLabel.BackgroundTransparency = 1
+imageLabel.ScaleType = Enum.ScaleType.Stretch
+imageLabel.Parent = screenGui
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0.9, 0, 0.9, 0)
+frame.Position = UDim2.new(0.05, 0, 0.05, 0)
+frame.BackgroundTransparency = 1
+frame.Parent = imageLabel
+
+local frameCorner = Instance.new("UICorner")
+frameCorner.CornerRadius = UDim.new(0, 10)
+frameCorner.Parent = frame
+
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, -20, 0.15, 0)
+title.Position = UDim2.new(0, -10, 0.05, 0) -- Movido para a esquerda
+title.BackgroundTransparency = 1
+title.Text = "Rael hub"
+title.TextColor3 = Color3.fromRGB(255, 255, 255)
+title.Font = Enum.Font.ArialBold
+title.TextScaled = true
+title.Parent = frame
+
+local description = Instance.new("TextLabel")
+description.Size = UDim2.new(1, -20, 0.2, 0)
+description.Position = UDim2.new(0, -10, 0.25, 0) -- Movido para a esquerda para alinhar com o título
+description.BackgroundTransparency = 1
+description.Text = Paragrafo
+description.TextColor3 = Color3.fromRGB(255, 255, 255)
+description.Font = Enum.Font.Arial
+description.TextSize = 20
+description.TextStrokeTransparency = 0.8
+description.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+description.Parent = frame
+
+local buttonContainer = Instance.new("Frame")
+buttonContainer.Size = UDim2.new(0.8, 0, 0.3, 0)
+buttonContainer.Position = UDim2.new(0.1, 0, 0.55, 0)
+buttonContainer.BackgroundTransparency = 1
+buttonContainer.Parent = frame
+
+local button1 = Instance.new("TextButton")
+button1.Size = UDim2.new(0.4, 0, 0.8, 0)
+button1.Position = UDim2.new(0, 0, 0.1, 0)
+button1.BackgroundColor3 = Color3.fromRGB(34, 168, 110)
+button1.Text = btn1
+button1.TextColor3 = Color3.fromRGB(255, 255, 255)
+button1.Font = Enum.Font.ArialBold
+button1.TextSize = 18
+button1.AutoButtonColor = false
+button1.Parent = buttonContainer
+
+local button1Corner = Instance.new("UICorner")
+button1Corner.CornerRadius = UDim.new(0, 10)
+button1Corner.Parent = button1
+
+local button2 = Instance.new("TextButton")
+button2.Size = UDim2.new(0.4, 0, 0.8, 0)
+button2.Position = UDim2.new(0.5, 0, 0.1, 0)
+button2.BackgroundColor3 = Color3.fromRGB(34, 168, 110)
+button2.Text = btn2
+button2.TextColor3 = Color3.fromRGB(255, 255, 255)
+button2.Font = Enum.Font.ArialBold
+button2.TextSize = 18
+button2.AutoButtonColor = false
+button2.Parent = buttonContainer
+
+local button2Corner = Instance.new("UICorner")
+button2Corner.CornerRadius = UDim.new(0, 10)
+button2Corner.Parent = button2
+
+-- Adicionando o som
+local startSound = Instance.new("Sound")
+startSound.SoundId = "rbxassetid://6114974207"
+startSound.Volume = 1
+startSound.Parent = screenGui
+
+local closeButton = Instance.new("TextButton")
+closeButton.Size = UDim2.new(0, 30, 0, 30)
+closeButton.Position = UDim2.new(1, -70, 0, 40)
+closeButton.AnchorPoint = Vector2.new(1, 0)
+closeButton.BackgroundTransparency = 1
+closeButton.Text = "X"
+closeButton.TextColor3 = Color3.fromRGB(255, 0, 0)
+closeButton.Font = Enum.Font.ArialBold
+closeButton.TextSize = 24
+closeButton.Parent = imageLabel
+
+-- Toca o som ao iniciar
+startSound:Play()
+
+closeButton.MouseButton1Click:Connect(function()
+    screenGui:Destroy()
+end)
+
+local function animateTextColor(label)
+    while true do
+        for hue = 0, 1, 0.01 do
+            label.TextColor3 = Color3.fromHSV(hue, 1, 1)
+            wait(0.05)
+        end
+    end
+end
+
+spawn(function()
+    animateTextColor(title)
+end)
+
+local function loadNormalScript()
+    local scriptURL = 'https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B2C3/main/scripts/script%20v1/script.txt'
+    loadstring(game:HttpGet(scriptURL))()
+end
+
+local function loadSkipLarvaScript()
+    local scriptURL = "https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B2C3/main/scripts/script%20v1.5/script.txt"
+    loadstring(game:HttpGet(scriptURL))()
+end
+
+local function animateButtonClick(button)
+    button.MouseButton1Click:Connect(function()
+        button.BackgroundColor3 = Color3.fromRGB(47, 236, 154)
+        button.BorderSizePixel = 2
+        button.BorderColor3 = Color3.fromRGB(255, 255, 255)
+        wait(0.2)
+        button.BackgroundColor3 = Color3.fromRGB(34, 168, 110)
+        button.BorderSizePixel = 0
+        if button == button1 then
+            loadNormalScript()
+            frame.Visible = false
+        elseif button == button2 then
+            loadSkipLarvaScript()
+            frame.Visible = false
+        end
+    end)
+end
+
+animateButtonClick(button1)
+animateButtonClick(button2)
