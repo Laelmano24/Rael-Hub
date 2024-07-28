@@ -154,13 +154,52 @@ spawn(function()
 end)
 
 local function loadNormalScript()
-    local scriptURL = 'https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B2C3/main/scripts/script%20v1/script.txt'
-    loadstring(game:HttpGet(scriptURL))()
+  
+  if locale == "pt-br" then
+      
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B2C3/scripts/normal/B2C3%20SNB.txt"))()
+      
+  elseif locale == "en-us" then
+      
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B2C3/scripts/normal/B2C3%20SNI.txt"))()
+      
+  elseif locale:sub(1, 2) == "es" then
+      
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B2C3/scripts/normal/B2C3%20SNE.txt"))()
+      
+  else
+      
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B2C3/scripts/normal/B2C3%20SNI.txt"))()
+      
+  end
+  
+  
+  
 end
 
 local function loadSkipLarvaScript()
-    local scriptURL = "https://raw.githubusercontent.com/Laelmano24/The-mimic-script/main/books/B2C3/main/scripts/script%20v1.5/script.txt"
-    loadstring(game:HttpGet(scriptURL))()
+    
+    
+    if locale == "pt-br" then
+      
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B2C3/scripts/autopassar/B2C3%20SAB.txt?token=GHSAT0AAAAAACVM6EOHYMZGCPIL5AXWWGMGZVGYB7A"))()
+      
+    elseif locale == "en-us" then
+      
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B2C3/scripts/autopassar/B2C3%20SAI.txt?token=GHSAT0AAAAAACVM6EOGABVHJTCRD7A25O24ZVGYDMA"))()
+      
+    elseif locale:sub(1, 2) == "es" then
+      
+      loadstring(game:HttpGet"https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B2C3/scripts/autopassar/B2C3%20SAE.txt")()
+      
+    else
+      
+      loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B2C3/scripts/autopassar/B2C3%20SAI.txt?token=GHSAT0AAAAAACVM6EOGABVHJTCRD7A25O24ZVGYDMA"))()
+      
+    end
+    
+    
+    
 end
 
 local function animateButtonClick(button)
@@ -173,9 +212,11 @@ local function animateButtonClick(button)
         button.BorderSizePixel = 0
         if button == button1 then
             loadNormalScript()
+            screenGui:Destroy()
             frame.Visible = false
         elseif button == button2 then
             loadSkipLarvaScript()
+            screenGui:Destroy()
             frame.Visible = false
         end
     end)
