@@ -536,7 +536,7 @@ elseif mapId == B2C1 then
     
     wait(1)
   
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B2C3/main.txt"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B2C1/script.txt"))()
     
 elseif mapId == B2C3 then
   
