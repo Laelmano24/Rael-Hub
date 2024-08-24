@@ -1,0 +1,641 @@
+local function criarInterface(texto, textbuttom, MapId, MusicId)
+    
+    wait(1)
+    
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Name = "RaelHubGui"
+    screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+    -- Adiciona o som
+    local sound = Instance.new("Sound")
+    sound.SoundId = MusicId
+    
+    sound.Volume = 1
+    sound.Parent = screenGui
+    sound:Play()
+
+    -- Cria o quadro principal
+    local frame = Instance.new("Frame")
+    frame.Size = UDim2.new(0.6, 0, 0.6, 0)
+    frame.Position = UDim2.new(0.2, 0, 0.2, 0)
+    frame.BackgroundTransparency = 1
+    frame.BorderSizePixel = 0
+    frame.ClipsDescendants = true
+    frame.Parent = screenGui
+
+    -- Adiciona a imagem de fundo
+    local backgroundImage = Instance.new("ImageLabel")
+    backgroundImage.Size = UDim2.new(1, 0, 1, 0)
+    backgroundImage.Position = UDim2.new(0, 0, 0, 0)
+    backgroundImage.BackgroundTransparency = 1
+    backgroundImage.Image = "rbxassetid://18665679839"
+    backgroundImage.ScaleType = Enum.ScaleType.Crop
+    backgroundImage.Parent = frame
+
+    -- Adiciona borda arredondada ao frame
+    local cornerFrame = Instance.new("UICorner")
+    cornerFrame.CornerRadius = UDim.new(0, 12)
+    cornerFrame.Parent = frame
+
+    -- Cria o título
+    local title = Instance.new("TextLabel")
+    title.Size = UDim2.new(1, 0, 0.15, 0)
+    title.Position = UDim2.new(0, 0, 0.05, 0)
+    title.BackgroundTransparency = 1
+    title.TextColor3 = Color3.fromRGB(34, 168, 110)
+    title.TextSize = 36
+    title.Text = "Rael Hub"
+    title.TextStrokeTransparency = 0.8
+    title.TextScaled = true
+    title.Parent = frame
+
+    -- Cria o parágrafo
+    local paragraph = Instance.new("TextLabel")
+    paragraph.Size = UDim2.new(1, 0, 0.3, 0)
+    paragraph.Position = UDim2.new(0, 0, 0.2, 0)
+    paragraph.BackgroundTransparency = 1
+    paragraph.TextColor3 = Color3.fromRGB(255, 255, 255)
+    paragraph.TextSize = 12
+    paragraph.Text = texto
+    paragraph.TextStrokeTransparency = 0.8
+    paragraph.TextWrapped = true
+    paragraph.Parent = frame
+
+    -- Cria o botão
+    local button = Instance.new("TextButton")
+    button.Size = UDim2.new(0.5, 0, 0.15, 0)
+    button.Position = UDim2.new(0.25, 0, 0.55, 0)
+    button.BackgroundColor3 = Color3.fromRGB(34, 168, 110)
+    button.TextColor3 = Color3.fromRGB(255, 255, 255)
+    button.TextSize = 16
+    button.Text = textbuttom
+    button.TextStrokeTransparency = 0.8
+    button.BorderSizePixel = 0
+    button.Parent = frame
+
+    -- Adiciona borda arredondada ao botão
+    local cornerButton = Instance.new("UICorner")
+    cornerButton.CornerRadius = UDim.new(0, 12)
+    cornerButton.Parent = button
+
+    -- Cria o botão de fechar (X)
+    local closeButton = Instance.new("TextButton")
+    closeButton.Size = UDim2.new(0.1, 0, 0.1, 0)
+    closeButton.Position = UDim2.new(0.9, -30, 0.05, 0)
+    closeButton.BackgroundTransparency = 1 -- Fundo invisível
+    closeButton.TextColor3 = Color3.fromRGB(168, 34, 34) -- Texto vermelho escuro (#A82222)
+    closeButton.TextSize = 18 -- Tamanho do texto reduzido
+    closeButton.Text = "X"
+    closeButton.TextStrokeTransparency = 0.8
+    closeButton.BorderSizePixel = 0
+    closeButton.ZIndex = 2
+    closeButton.Parent = frame
+
+    -- Adiciona borda arredondada ao botão de fechar
+    local cornerCloseButton = Instance.new("UICorner")
+    cornerCloseButton.CornerRadius = UDim.new(0, 6)
+    cornerCloseButton.Parent = closeButton
+
+    -- Função para fechar a interface
+    local function fecharInterface()
+        screenGui:Destroy()
+    end
+
+    -- Conecta a função ao clique do botão de fechar
+    closeButton.MouseButton1Click:Connect(fecharInterface)
+
+    -- Função para teleportar o jogador
+    local function entrarNoJogo()
+        game:GetService("TeleportService"):Teleport(MapId, game.Players.LocalPlayer)
+    end
+
+    -- Conecta a função ao clique do botão
+    button.MouseButton1Click:Connect(entrarNoJogo)
+
+    -- Adiciona o TweenService para mudar a cor do título
+    local tweenService = game:GetService("TweenService")
+
+    local function mudarCorDoTitulo()
+        local cores = {
+            Color3.fromRGB(47, 236, 154),
+            Color3.fromRGB(34, 168, 110),
+            Color3.fromRGB(27, 134, 88),
+            Color3.fromRGB(8, 40, 26)
+        }
+
+        local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut, -1, true)
+        local tweenGoal = {TextColor3 = cores[1]}
+        
+        local tween = tweenService:Create(title, tweenInfo, tweenGoal)
+        tween:Play()
+        
+        -- Alterna as cores
+        while true do
+            for _, cor in ipairs(cores) do
+                tweenGoal.TextColor3 = cor
+                tween:Play()
+                wait(2)
+            end
+        end
+    end
+
+    -- Inicia a mudança de cor
+    mudarCorDoTitulo()
+end
+
+
+
+local function showImageWithSound()
+   wait(1)
+    -- IDs fixos
+    local imageId = ""
+    
+    
+    local Players = game:GetService("Players")
+    local player = Players.LocalPlayer
+
+    local locale = player.LocaleId:lower()
+
+    if locale == "pt-br" then
+      
+      imageId = "rbxassetid://18655033752"
+    
+    elseif locale == "en-us" then
+      
+      imageId = "rbxassetid://18654153605"
+    
+    elseif locale:sub(1, 2) == "es" then
+    
+      imageId = "rbxassetid://18655089320"
+    else
+      
+      imageId = "rbxassetid://18654153605"
+    
+    end
+    
+    
+    local soundId = "rbxassetid://6073491164"
+    local fadeDuration = 0.2
+    local waitTime = 3
+
+    -- Cria a ScreenGui e a adiciona ao CoreGui
+    local screenGui = Instance.new("ScreenGui")
+    screenGui.Parent = game.CoreGui
+
+    -- Cria o ImageLabel e define suas propriedades
+    local imageLabel = Instance.new("ImageLabel")
+    imageLabel.Parent = screenGui
+
+    -- Define o tamanho da imagem como 50% da tela
+    imageLabel.Size = UDim2.new(0.5, 0, 0.5, 0) -- 50% da largura e 50% da altura da tela
+
+    -- Define o ponto de ancoragem no centro da imagem
+    imageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+
+    -- Centraliza a imagem na tela
+    imageLabel.Position = UDim2.new(0.5, 0, 0.5, 0) -- Centraliza no meio da tela, ajustado pelo AnchorPoint
+
+    -- Define o ID da imagem e remove o fundo
+    imageLabel.Image = imageId
+    imageLabel.BackgroundTransparency = 1
+
+    -- Ajusta a imagem para manter suas proporções e não esticar
+    imageLabel.ScaleType = Enum.ScaleType.Fit
+
+    -- Cria e configura o som
+    local sound = Instance.new("Sound")
+    sound.SoundId = soundId
+    sound.Parent = game.SoundService -- Adiciona o som ao serviço de som
+    sound.Volume = 1 -- Define o volume (0 a 1)
+    sound.Looped = false -- Não repete o som
+    sound:Play() -- Reproduz o som
+
+    -- Função para fazer o fade in
+    local function fadeIn(duration)
+        local increment = 0.05
+        local step = increment / duration
+        for i = 0, 1, step do
+            imageLabel.ImageTransparency = 1 - i
+            wait(increment)
+        end
+    end
+
+    -- Função para fazer o fade out
+    local function fadeOut(duration)
+        local increment = 0.05
+        local step = increment / duration
+        for i = 0, 1, step do
+            imageLabel.ImageTransparency = i
+            wait(increment)
+        end
+    end
+
+    -- Faz o fade in da imagem
+    fadeIn(fadeDuration)
+
+    -- Aguarda o tempo especificado após o fade in
+    wait(waitTime)
+
+    -- Faz o fade out da imagem
+    fadeOut(fadeDuration)
+
+    -- Remove o ImageLabel e o som após o fade out
+    imageLabel:Destroy()
+    sound:Destroy()
+    
+end
+
+
+local mapId = game.PlaceId
+
+local the_mimic_lobby = 6243699076
+
+local B1C1_Part1 = {
+    normal = 6296321810,
+    nightmare = 6479231833
+}
+
+local B1C1_Part2 = {
+    normal = 6301638949,
+    nightmare = 6480994221
+}
+
+local B1C2_Part1 = {
+    normal = 6373539583,
+    nightmare = 6485055338
+}
+
+local B1C2_Part2 = {
+    normal = 6406571212,
+    nightmare = 6485055836
+}
+
+local B1C2_Part3 = {
+    normal = 6425178683,
+    nightmare = 6485056556
+}
+
+local B1C3_Part1 = {
+    normal = 6472459099,
+    nightmare = 6688734180
+}
+
+local B1C3_Part2 = {
+    normal = 6682163754,
+    nightmare = 6688734313
+}
+
+local B1C3_Part3 = {
+    normal = 6682164423,
+    nightmare = 6688734395
+}
+local B1C4_Part1 = {
+    
+    normal = 7251865082,
+    nigthmare = 7265396387
+    
+}
+
+local B1C4_Part2 = {
+    normal = 7251866503,
+    nigthmare = 7265396805
+}
+
+local B1C4_Part3 = {
+    normal = 7251867155,
+    nigthmare = 7265397072
+}
+local B1C4_Part4 = {
+    normal = 7251867574,
+    nigthmare = 7265397848
+}
+local TWT_Part1 = {
+    normal = 7068738088,
+    nightmare = 7068951438
+}
+
+local TWT_Part2 = {
+    normal = 7068739000,
+    nightmare = 7068951914
+}
+
+local TWT_Part3 = {
+    normal = 7068740106,
+    nightmare = 7068952294
+}
+
+local HalloweenTrials_Part1 = 7633631103
+
+local HalloweenTrials_Part2 = 7633631351
+
+local HalloweenTrials_Part3 = 7633631511
+
+local Jigoku = 7618863566
+
+local Christmas_Trials = {
+    normal = 8311299084,
+    nightmare = 8311302084
+}
+
+local NigthmareCircus = 11126398230
+
+local B2C1 = 8056702588
+
+local B2C3 = 15962819441
+
+local B1C1_classic_part1 = 15996404472
+
+local B1C1_classic_part2 = 15996407335
+
+local B1C2_classic_part1 = 15996410294
+
+local B1C2_classic_part2 = 15996411979
+
+local B1C2_classic_part3 = 15996413469
+
+local B1C3_classic_part1 = 15996414738
+
+local B1C3_classic_part2 = 15996416081
+
+local B1C3_classic_part3 = 15996417416
+
+local YokaiMaze = {
+  MainMaze = 13289373717
+}
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local locale = player.LocaleId:lower()
+
+if mapId == the_mimic_lobby then
+  
+  if locale == "pt-br" then
+    
+    criarInterface("Use o script dentro dos capítulos.\nGostaria de jogar o modo Jigoku?", "Entrar no Jigoku", Jigoku, "rbxassetid://1841647093")
+    
+  elseif locale == "en-us" then
+    
+    criarInterface("Use this script within chapters.\nWould you like to play Jigoku mode?", "Join on Jigoku", Jigoku, "rbxassetid://1841647093")
+    
+  elseif locale:sub(1, 2) == "es" then
+    
+    criarInterface("Utilice este script dentro de los capítulos.\nMe gustaría jugar al modo Jigoku.", "Iniciar sesión en Jigoku", Jigoku, "rbxassetid://1841647093")
+    
+  else
+    
+    criarInterface("Use this script within chapters.\nWould you like to play Jigoku mode?", "Join on Jigoku", Jigoku, "rbxassetid://1841647093")
+    
+  end
+  
+elseif mapId == B1C1_Part1.normal or mapId == B1C1_Part1.nightmare then
+
+    showImageWithSound()
+
+    wait(1)
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B1C1/script.txt"))()
+elseif mapId == B1C1_Part2.normal or mapId == B1C1_Part2.nightmare then
+  
+    showImageWithSound()
+
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B1C1/script.txt"))()
+elseif mapId == B1C2_Part1.normal or mapId == B1C2_Part1.nightmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B1C2/script.txt"))()
+elseif mapId == B1C2_Part2.normal or mapId == B1C2_Part2.nightmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B1C2/script.txt"))()
+elseif mapId == B1C2_Part3.normal or mapId == B1C2_Part3.nightmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B1C2/script.txt"))()
+elseif mapId == B1C3_Part1.normal or mapId == B1C3_Part1.nightmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B1C3/script.txt"))()
+elseif mapId == B1C3_Part2.normal or mapId == B1C3_Part2.nightmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B1C3/script.txt"))()
+elseif mapId == B1C3_Part3.normal or mapId == B1C3_Part3.nightmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B1C3/script.txt"))()
+    
+
+
+elseif mapId == B1C4_Part1.normal or mapId == B1C4_Part1.nigthmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B1C4/script.txt"))()
+elseif mapId == B1C4_Part2.normal or mapId == B1C4_Part2.nigthmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B1C4/script.txt"))()
+elseif mapId == B1C4_Part3.normal or mapId == B1C4_Part3.nigthmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B1C4/script.txt"))()
+elseif mapId == B1C4_Part4.normal or mapId == B1C4_Part4.nigthmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B1C4/script.txt"))()
+
+elseif mapId == TWT_Part1.normal or mapId == TWT_Part1.nightmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/TWT/script.txt"))()
+elseif mapId == TWT_Part2.normal or mapId == TWT_Part2.nightmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/TWT/script.txt"))()
+elseif mapId == TWT_Part3.normal or mapId == TWT_Part3.nightmare then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/TWT/script.txt"))()
+elseif mapId == Jigoku then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/Jigoku/script.txt"))()
+elseif mapId == Christmas_Trials.normal or mapId == Christmas_Trials.nightmare then
+    showImageWithSound()
+    wait(1)
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/Christmas%20Trials/script.txt"))()
+elseif mapId == HalloweenTrials_Part1 then
+  
+  showImageWithSound()
+  
+  wait(1)
+  
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/Halloween%20Trials/main.txt"))()
+elseif mapId == HalloweenTrials_Part2 then
+
+  showImageWithSound()
+
+  wait(1)
+
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/Halloween%20Trials/main.txt"))()
+  
+elseif mapId == HalloweenTrials_Part3 then
+
+  showImageWithSound()
+
+  wait(1)
+
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/Halloween%20Trials/main.txt"))()
+elseif mapId == B2C1 then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B2C3/main.txt"))()
+    
+elseif mapId == B2C3 then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/B2C3/main.txt"))()
+    
+elseif mapId == NigthmareCircus then
+  
+    showImageWithSound()
+    
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/Nightmare%20circus/script.txt"))()
+    
+elseif mapId == B1C1_classic_part1 then
+  
+    showImageWithSound()
+        
+    wait(1)
+    
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/The%20mimic%20classic%20B1C1/script.txt"))()
+elseif mapId == B1C1_classic_part2 then
+  
+    showImageWithSound()
+        
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/The%20mimic%20classic%20B1C1/script.txt"))()
+elseif mapId == B1C2_classic_part1 then
+  
+    showImageWithSound()
+        
+    wait(1)
+    
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/The%20mimic%20classic%20B1C2/script.txt"))()
+elseif mapId == B1C2_classic_part2 then
+  
+    showImageWithSound()
+        
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/The%20mimic%20classic%20B1C2/script.txt"))()
+elseif mapId == B1C2_classic_part3 then
+  
+    showImageWithSound()
+        
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/The%20mimic%20classic%20B1C2/script.txt"))()
+elseif mapId == B1C3_classic_part1 then
+  
+    showImageWithSound()
+        
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/The%20mimic%20classic%20B1C3/script.txt"))()
+elseif mapId == B1C3_classic_part2 then
+  
+    showImageWithSound()
+        
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/The%20mimic%20classic%20B1C3/script.txt"))()
+elseif mapId == B1C3_classic_part3 then
+  
+    showImageWithSound()
+        
+    wait(1)
+  
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/The%20mimic/books/The%20mimic%20classic%20B1C3/script.txt"))()
+elseif mapId == YokaiMaze.MainMaze then
+
+  showImageWithSound()
+
+  wait(1)
+
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/Laelmano24/Rael-Hub/main/Yokai%20maze/Labirinto%20principal/script.txt"))()
+else
+  
+  
+  if locale == "pt-br" then
+    
+    criarInterface("O script não funciona aqui :(", "Entrar no the mimic", the_mimic_lobby, "rbxassetid://8904888220")
+  
+  elseif locale == "en-us" then
+  
+    criarInterface("The script doesn't work here :(", "Join on the mimic", the_mimic_lobby, "rbxassetid://8904888220")
+  
+  elseif locale:sub(1, 2) == "es" then
+  
+    criarInterface("El guión no funciona aquí :(", "Únete a la mímica", the_mimic_lobby, "rbxassetid://8904888220")
+  
+  else
+  
+    criarInterface("The script doesn't work here :(", "Join on the mimic", the_mimic_lobby, "rbxassetid://8904888220")
+  
+  end
+  
+end
