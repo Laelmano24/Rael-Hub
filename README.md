@@ -20,6 +20,6 @@ Rael Hub is a Roblox cheat software designed to assist DLL runner users in Roblo
 
 ---
 
-📃 Get script: Click on this site to access the script
+📃 Get script: Click on this site to access the script:<br>
 
-<a href="rael-hub-site.vercel.app" >Rael Hub Site</a>
+<a href="rael-hub-site.vercel.app" target="_blank">Rael Hub Site</a>
