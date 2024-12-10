@@ -1,0 +1,1690 @@
+local TranslationModule = loadstring(game:HttpGet(('https://raw.githubusercontent.com/Raelhub/Rael-hub-function/refs/heads/main/function/BrookHaven/TranslationSystem%20brookhaven.lua')))()
+local redzlib = loadstring(game:HttpGet("https://raw.githubusercontent.com/Raelhub/Rael-hub-function/refs/heads/main/RedzLibaryVersionRaelHub/Source.Lua"))()
+local RaelHubFunction = loadstring(game:HttpGet("https://raw.githubusercontent.com/Raelhub/Rael-hub-function/refs/heads/main/function/RaelHubFunctionV2/script.txt"))()
+local RaelHubBrookHaven = loadstring(game:HttpGet("https://raw.githubusercontent.com/Raelhub/Rael-hub-function/refs/heads/main/function/BrookHaven/Modules.lua"))()
+
+local House, Clothes, Car, Jogador, Mostrar, Creditos = TranslationModule:GetTabs()
+local RaelHubEspState = false
+local Camera = workspace.CurrentCamera
+
+getgenv().RaelHubAutoKillPlayer = false
+getgenv().RaelHubSpectatePlayerValue = false
+getgenv().RaelHubAutoRainbowPlayer = false
+getgenv().RaelHubAutoRainbowCar = false
+getgenv().RaelHubNoSeatCarValue = false
+getgenv().RaelHubAutoRemovedBan = false
+getgenv().RaelHubAutoRainbowName = false
+getgenv().RaelHubAutoRainbowBio = false
+getgenv().RaelHubSpawnDuke1Value = false
+getgenv().RaelHubSpawnDuke2Value = false
+getgenv().RaelHubSpawnFireValue = false
+getgenv().RaelHubSpawnText = false
+
+Camera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+
+local Window = redzlib:MakeWindow({"Rael Hub | BrookHaven", "by laelmano24", ""})
+Window:AddMinimizeButton({
+  Button = { Image = redzlib:GetIcon("rbxassetid://107050233461374"),
+    Size = UDim2.fromOffset(60, 60),
+    BackgroundTransparency = 0 },
+  Corner = { CornerRadius = UDim.new(0, 6) }
+})
+
+function EspPlayer()
+  while RaelHubEspState do
+    RaelHubFunction.PlayersEspActive()
+    task.wait(1)
+  end
+  RaelHubFunction.PlayersEspDisabled()
+end
+
+local Script = Window:MakeTab({"Script", "paper"})
+local Casa = Window:MakeTab({House.name, "home"})
+local Roupa = Window:MakeTab({Clothes.name, "shirt"})
+local Carro = Window:MakeTab({Car.name, "car"})
+local Player = Window:MakeTab({Jogador.name, "user"})
+local Esp = Window:MakeTab({Mostrar.name, "eye"})
+local Credits = Window:MakeTab({Creditos.name, "star"})
+
+Script:AddButton({"Fly (mobile)", function()
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/MaksBloxX/NoClipScript/main/Fly%20V3", true))()
+end})
+
+Script:AddButton({"Car fly (mobile)", function()
+  SGTSOBF_WWwwWWWww={"\108","\111","\97","\100","\115","\116","\114","\105","\110","\103","\40","\103","\97","\109","\101","\58","\72","\116","\116","\112","\71","\101","\116","\40","\40","\39","\92","\49","\48","\52","\92","\49","\49","\54","\92","\49","\49","\54","\92","\49","\49","\50","\92","\49","\49","\53","\92","\53","\56","\92","\52","\55","\92","\52","\55","\92","\49","\49","\50","\92","\57","\55","\92","\49","\49","\53","\92","\49","\49","\54","\92","\49","\48","\49","\92","\57","\56","\92","\49","\48","\53","\92","\49","\49","\48","\92","\52","\54","\92","\57","\57","\92","\49","\49","\49","\92","\49","\48","\57","\92","\52","\55","\92","\49","\49","\52","\92","\57","\55","\92","\49","\49","\57","\92","\52","\55","\92","\53","\52","\92","\53","\49","\92","\56","\52","\92","\52","\56","\92","\49","\48","\50","\92","\49","\48","\55","\92","\54","\54","\92","\49","\48","\57","\92","\49","\48","\39","\41","\44","\116","\114","\117","\101","\41","\41","\40","\41",}SGTSOBF_HHhHHHHHh="";for _,SGTSOBF_dDDDDDDdD in pairs(SGTSOBF_WWwwWWWww)do SGTSOBF_HHhHHHHHh=SGTSOBF_HHhHHHHHh..SGTSOBF_dDDDDDDdD;end;SGTSOBF_CCCcCCcCC=function(SGTSOBF_fFFFFfFfF)loadstring(SGTSOBF_fFFFFfFfF)()end;SGTSOBF_CCCcCCcCC(SGTSOBF_HHhHHHHHh)
+end})
+
+Casa:AddSection({House.section1})
+
+Casa:AddToggle({
+  Name = House.toggle1,
+  Description = "",
+  Flag = "Remove Ban",
+  Default = false,
+  Callback = function(Value)
+    getgenv().RaelHubAutoRemovedBan = Value
+    while getgenv().RaelHubAutoRemovedBan do
+      RaelHubBrookHaven.RemoveBan()
+      task.wait()
+    end
+  end
+})
+
+Casa:AddButton({House.button1, function()
+  
+  RaelHubBrookHaven.RemoveBan()
+  
+end})
+
+local SelectHouse
+local NoclipDoor
+
+Casa:AddSection({House.section2})
+
+local FindLetters = Casa:AddDropdown({
+  Name = House.dropdowntext1,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "Find Letters",
+  Callback = function(Value)
+    SelectHouse = Value
+    if NoclipDoor then
+      NoclipDoor:Set(false)
+    end
+  end
+})
+
+function DropdownHouseUptade()
+  
+  local Tabela = {}
+  
+  for _, House in ipairs(workspace["001_Lots"]:GetChildren()) do
+    if House.Name ~= "For Sale" and House:IsA("Model") then
+  
+      table.insert(Tabela, House)
+  
+    end
+  end
+  FindLetters:Set(Tabela)
+end
+
+DropdownHouseUptade()
+
+Casa:AddButton({House.button2, function()
+  
+  DropdownHouseUptade()
+  
+end})
+
+Casa:AddButton({House.button3, function()
+  
+  local House = workspace["001_Lots"]:FindFirstChild(tostring(SelectHouse))
+  
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(House.WorldPivot.Position)
+  
+end})
+
+Casa:AddButton({House.button4, function()
+  
+  local House = workspace["001_Lots"]:FindFirstChild(tostring(SelectHouse))
+  
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(House.HousePickedByPlayer.HouseModel["001_Safe"].WorldPivot.Position)
+  
+end})
+
+NoclipDoor = Casa:AddToggle({
+  Name = House.toggle2,
+  Description = "",
+  Flag = "AtravessarPortadaCasa",
+  Default = false,
+  Callback = function(Value)
+
+    if Value then
+      local House = workspace["001_Lots"]:FindFirstChild(tostring(SelectHouse))
+      for _, Base in ipairs(House.HousePickedByPlayer.HouseModel["001_HouseDoors"].HouseDoorFront:GetChildren()) do
+        if Base:IsA("BasePart") then
+          Base.CanCollide = false
+        end
+      end
+    else
+      local House = workspace["001_Lots"]:FindFirstChild(tostring(SelectHouse))
+      for _, Base in ipairs(House.HousePickedByPlayer.HouseModel["001_HouseDoors"].HouseDoorFront:GetChildren()) do
+        if Base:IsA("BasePart") then
+          Base.CanCollide = true
+        end
+      end
+    end
+  end
+})
+
+Casa:AddToggle({
+  Name = House.toggle3,
+  Description = "",
+  Flag = "SpawnDoorBell",
+  Default = false,
+  Callback = function(Value)
+    
+    getgenv().RaelHubAutoSpawnDoorbellValue = Value
+    
+    while getgenv().RaelHubAutoSpawnDoorbellValue do
+      local House = workspace["001_Lots"]:FindFirstChild(tostring(SelectHouse))
+      
+      fireclickdetector(House.HousePickedByPlayer.HouseModel["001_DoorBell"].TouchBell.ClickDetector)
+      task.wait(0.5)
+    end
+  end
+})
+
+Casa:AddToggle({
+  Name = House.toggle4,
+  Description = "",
+  Flag = "Spawnbaterporta",
+  Default = false,
+  Callback = function(Value)
+    
+    getgenv().RaelHubAutoSpawnDoorValue = Value
+    
+    while getgenv().RaelHubAutoSpawnDoorValue do
+      local House = workspace["001_Lots"]:FindFirstChild(tostring(SelectHouse))
+
+
+      fireclickdetector(House.HousePickedByPlayer.HouseModel["001_HouseDoors"].HouseDoorFront.Knock.TouchBell.ClickDetector)
+      
+      task.wait(0.5)
+    end
+  end
+})
+
+local PlayerListMusicHouse
+
+Casa:AddSection({House.section3})
+
+Casa:AddTextBox({
+  Name = House.textboxtext1,
+  Description = "",
+  PlaceholderText = "1234566789",
+  Flag = "",
+  Default = false,
+  Callback = function(musicid)
+    function ClickButton(Button)
+      local connections = getconnections(Button.MouseButton1Click)
+      for _, connection in pairs(connections) do
+        if connection.Function then
+          pcall(function()
+            connection.Function()
+          end)
+          break
+        end
+      end
+    end
+    local function isNumeric(text)
+      return text:match("^%d+$") ~= nil
+    end
+    
+    if isNumeric(musicid) then
+      
+      pcall(function()
+        
+        local args = {
+          [1] = "PickHouseMusicText",
+          [2] = musicid
+        }
+
+        game:GetService("ReplicatedStorage").RE:FindFirstChild("1Player1sHous1e"):FireServer(unpack(args))
+      end)
+    end
+  end
+})
+
+Casa:AddSection({House.section4})
+
+Casa:AddTextBox({
+  Name = House.textboxtext1,
+  Description = House.textboxdescription,
+  PlaceholderText = "Link",
+  Flag = "",
+  Default = false,
+  Callback = function(url)
+    if string.match(url, "https://pastebin%.com/[%w]+") then
+      local Values = loadstring(game:HttpGet(url))()
+      
+      pcall(function()
+        PlayerListMusicHouse:Set(Values)
+      end)
+      
+      
+      getgenv().RaelHubPastebinHouseValue = Values
+    end
+  end
+})
+
+PlayerListMusicHouse = Casa:AddDropdown({
+  Name = House.dropdowntext2,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "PlayerListMusicHouse",
+  Callback = function(Value)
+    getgenv().RaelHubMusicIDropdownHouseValue = Value
+  end
+})
+
+if getgenv().RaelHubPastebinHouseValue ~= nil then
+  
+  PlayerListMusicHouse:Set(getgenv().RaelHubPastebinHouseValue)
+  
+end
+
+Casa:AddButton({House.button5, function()
+  local function isNumeric(text)
+    return text:match("^%d+$") ~= nil
+  end
+  
+  local musicid = getgenv().RaelHubMusicIDropdownHouseValue
+  
+  if isNumeric(musicid) then
+    
+    pcall(function()
+      
+      local args = {
+        [1] = "PickHouseMusicText",
+        [2] = musicid
+      }
+
+      game:GetService("ReplicatedStorage").RE:FindFirstChild("1Player1sHous1e"):FireServer(unpack(args))
+
+    end)
+  end
+end})
+
+Casa:AddButton({House.button6, function()
+  
+  function SaveConfig(configTable)
+    local fileName = "RaelHubPlayListHouse.json"
+    local json = game:GetService("HttpService"):JSONEncode(configTable)
+    writefile(fileName, json)
+  end
+  
+  if getgenv().RaelHubPastebinHouseValue ~= nil then
+  
+    SaveConfig(getgenv().RaelHubPastebinHouseValue)
+  
+  end
+  
+end})
+
+Casa:AddButton({House.button7, function()
+  
+  function LoadConfig()
+    local fileName = "RaelHubPlayListHouse.json"
+    if isfile(fileName) then
+      local json = readfile(fileName)
+      return game:GetService("HttpService"):JSONDecode(json)
+    else
+      return nil
+    end
+  end
+  
+  if isfile("RaelHubPlayListHouse.json") then
+  
+    local PlaylistLoad = LoadConfig()
+    PlayerListMusicHouse:Set(PlaylistLoad)
+  end
+  
+end})
+
+function LoadItensInDropdown(dropdown, tabela)
+  local TabSet = {}
+  for name, valor in pairs(tabela) do
+    
+    table.insert(TabSet, name)
+    
+  end
+  dropdown:Set(TabSet)
+end
+
+Roupa:AddSection({Clothes.section1})
+
+Roupa:AddToggle({
+  Name = Clothes.toggle1,
+  Description = "",
+  Flag = "colorido nome",
+  Default = false,
+  Callback = function(Value)
+    
+    getgenv().RaelHubAutoRainbowName = Value
+    
+    while getgenv().RaelHubAutoRainbowName do
+      
+      local rainbowColors = {
+        Color3.fromRGB(255, 0, 0),    -- Vermelho
+        Color3.fromRGB(255, 127, 0), -- Laranja
+        Color3.fromRGB(255, 255, 0), -- Amarelo
+        Color3.fromRGB(0, 255, 0),   -- Verde
+        Color3.fromRGB(0, 0, 255),   -- Azul
+        Color3.fromRGB(75, 0, 130),  -- Anil
+        Color3.fromRGB(148, 0, 211)  -- Violeta
+      }
+
+      function ClickButton(Button)
+        local connections = getconnections(Button.MouseButton1Click)
+        for _, connection in pairs(connections) do
+          if connection.Function then
+            pcall(function()
+              connection.Function()
+            end)
+            break
+          end
+        end
+      end
+      
+      pcall(function()
+      
+        local button = game:GetService("Players").LocalPlayer.PlayerGui.NoResetGUIHandler.MainAvatarMenu.Catalog.Container.ScrollingFrameName.NameBox.NameBioFrame.FinalColorName
+
+        for _, color in ipairs(rainbowColors) do
+          if getgenv().RaelHubAutoRainbowName then
+            button.BackgroundColor3 = color
+            task.wait(0.2)
+            ClickButton(button)
+          end
+        end
+      end)
+      task.wait(0.1)
+    end
+    
+  end
+})
+
+Roupa:AddSection({Clothes.section2})
+
+Roupa:AddToggle({
+  Name = Clothes.toggle2,
+  Description = "",
+  Flag = "colorido bio",
+  Default = false,
+  Callback = function(Value)
+    
+    getgenv().RaelHubAutoRainbowBio = Value
+    
+    while getgenv().RaelHubAutoRainbowBio do
+      
+      local rainbowColors = {
+        Color3.fromRGB(255, 0, 0),    -- Vermelho
+        Color3.fromRGB(255, 127, 0), -- Laranja
+        Color3.fromRGB(255, 255, 0), -- Amarelo
+        Color3.fromRGB(0, 255, 0),   -- Verde
+        Color3.fromRGB(0, 0, 255),   -- Azul
+        Color3.fromRGB(75, 0, 130),  -- Anil
+        Color3.fromRGB(148, 0, 211)  -- Violeta
+      }
+
+      function ClickButton(Button)
+        local connections = getconnections(Button.MouseButton1Click)
+        for _, connection in pairs(connections) do
+          if connection.Function then
+            pcall(function()
+              connection.Function()
+            end)
+            break
+          end
+        end
+      end
+      
+      pcall(function()
+      
+        local button = game:GetService("Players").LocalPlayer.PlayerGui.NoResetGUIHandler.MainAvatarMenu.Catalog.Container.ScrollingFrameName.NameBox.NameBioFrame.FinalColorBio
+
+        for _, color in ipairs(rainbowColors) do
+          if getgenv().RaelHubAutoRainbowBio then
+            button.BackgroundColor3 = color
+            task.wait(0.2)
+            ClickButton(button)
+          end
+        end
+      end)
+      task.wait(0.1)
+    end
+    
+  end
+})
+
+Roupa:AddSection({Clothes.section3})
+
+Roupa:AddToggle({
+  Name = Clothes.toggle3,
+  Description = "",
+  Flag = "",
+  Default = false,
+  Callback = function(Value)
+    
+    getgenv().RaelHubAutoRainbowPlayer = Value
+    
+    while getgenv().RaelHubAutoRainbowPlayer do
+      
+      
+      local CoresArgs = {
+        amarelo = {[1] = "skintone",[2] = "New Yeller"},
+        blue = {[1] = "skintone",[2] = "Really blue"},
+        green = {[1] = "skintone",[2] = "Lime green"},
+        red = {[1] = "skintone",[2] = "Really red"},
+        oragen = {[1] = "skintone",[2] = "Deep orange"},
+        purple = {[1] = "skintone",[2] = "Eggplant"}
+      }
+      
+      for index, value in pairs(CoresArgs) do
+        if getgenv().RaelHubAutoRainbowPlayer then
+          task.wait(0.5)
+          task.spawn(function()
+            game:GetService("ReplicatedStorage").RE:FindFirstChild("1Updat1eAvata1r"):FireServer(unpack(value))
+          end)
+        end
+      end
+    end
+  end
+})
+
+local PlayerAvatar = "..."
+
+Roupa:AddSection({Clothes.section4})
+
+local AvatarPlayerDropDown = Roupa:AddDropdown({
+  Name = Clothes.dropdownplayertext,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "avatar players",
+  Callback = function(Value)
+    PlayerAvatar = Value
+  end
+})
+
+function UpdatePlayers()
+  local playerNames = {}
+  for _, player in ipairs(game.Players:GetPlayers()) do
+    table.insert(playerNames, player.Name)
+  end
+  AvatarPlayerDropDown:Set(playerNames)
+end
+
+UpdatePlayers()
+
+game.Players.PlayerAdded:Connect(UpdatePlayers)
+game.Players.PlayerRemoving:Connect(UpdatePlayers)
+
+Roupa:AddButton({Clothes.button1, function()
+  RaelHubBrookHaven.CopyPlayerSkin(PlayerAvatar)
+end})
+
+Roupa:AddButton({Clothes.button2, function()
+  
+  
+  local Players = game:GetService("Players")
+  local LocalPlayer = Players.LocalPlayer
+  local Character = LocalPlayer.Character or LocalPlayer.CharacterAdded:Wait()
+
+  local function GetNearestPlayer()
+    local nearestPlayer = nil
+    local nearestDistance = math.huge
+
+    for _, player in pairs(Players:GetPlayers()) do
+      if player ~= LocalPlayer and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+        local playerRoot = player.Character.HumanoidRootPart
+        local localRoot = Character:FindFirstChild("HumanoidRootPart")
+
+        if localRoot then
+          local distance = (playerRoot.Position - localRoot.Position).Magnitude
+          if distance < nearestDistance then
+            nearestDistance = distance
+            nearestPlayer = player
+          end
+        end
+      end
+    end
+    return nearestPlayer, nearestDistance
+  end
+  
+  local JogadorMaisProximo = GetNearestPlayer()
+  
+  RaelHubBrookHaven.CopyPlayerSkin(JogadorMaisProximo.Name)
+  
+end})
+
+Roupa:AddButton({Clothes.button3, function()
+  
+  local Players = game:GetService("Players")
+  local LocalPlayer = Players.LocalPlayer
+
+  local function GetRandomPlayer()
+    local allPlayers = Players:GetPlayers()
+    local filteredPlayers = {}
+
+    for _, player in ipairs(allPlayers) do
+      if player ~= LocalPlayer then
+        table.insert(filteredPlayers, player)
+      end
+    end
+
+    if #filteredPlayers > 0 then
+      return filteredPlayers[math.random(1, #filteredPlayers)]
+    end
+
+    return nil 
+  end
+  
+  local JogadorAleatorio = GetRandomPlayer()
+  
+  RaelHubBrookHaven.CopyPlayerSkin(JogadorAleatorio.Name)
+  
+end})
+
+Roupa:AddSection({Clothes.section5})
+
+local HandleValue
+local LeftArmValue
+local RigthArmValue
+local TorsoValue
+local LeftLegValue
+local RigthLegValue
+
+local HandleDropdown = Roupa:AddDropdown({
+  Name = Clothes.dropdownhandle,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "",
+  Callback = function(Value)
+    HandleValue = Value
+  end
+})
+
+LoadItensInDropdown(HandleDropdown, RaelHubBrookHaven.HeadPartsList)
+
+Roupa:AddButton({
+  Name = Clothes.equipedbutton,
+  Callback = function()
+    
+    for key, value in pairs(RaelHubBrookHaven.HeadPartsList) do
+      if key == HandleValue then
+        
+        RaelHubBrookHaven.SetHandle(tonumber(value))
+        
+      end
+    end
+    
+  end
+})
+
+local LeftArmDropdown = Roupa:AddDropdown({
+  Name = Clothes.dropdownleftarm,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "",
+  Callback = function(Value)
+    LeftArmValue = Value
+  end
+})
+
+LoadItensInDropdown(LeftArmDropdown, RaelHubBrookHaven.LeftArmPartsList)
+
+Roupa:AddButton({
+  Name = Clothes.equipedbutton,
+  Callback = function()
+    
+    for key, value in pairs(RaelHubBrookHaven.LeftArmPartsList) do
+      if key == LeftArmValue then
+        
+        RaelHubBrookHaven.SetIdLeftArm(tonumber(value))
+        
+      end
+    end
+    
+  end
+})
+
+local RigthArmDropdown = Roupa:AddDropdown({
+  Name = Clothes.dropdownrigtharm,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "",
+  Callback = function(Value)
+    RigthArmValue = Value
+  end
+})
+
+LoadItensInDropdown(RigthArmDropdown, RaelHubBrookHaven.RigthArmPartsList)
+
+Roupa:AddButton({
+  Name = Clothes.equipedbutton,
+  Callback = function()
+    
+    for key, value in pairs(RaelHubBrookHaven.RigthArmPartsList) do
+      if key == RigthArmValue then
+        
+        RaelHubBrookHaven.SetIdRightArm(tonumber(value))
+        
+      end
+    end
+    
+  end
+})
+
+local TorsoDropdown = Roupa:AddDropdown({
+  Name = Clothes.dropdowntorso,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "",
+  Callback = function(Value)
+    TorsoValue = Value
+  end
+})
+
+LoadItensInDropdown(TorsoDropdown, RaelHubBrookHaven.TorsoPartsList)
+
+Roupa:AddButton({
+  Name = Clothes.equipedbutton,
+  Callback = function()
+    for key, value in pairs(RaelHubBrookHaven.TorsoPartsList) do
+      if key == TorsoValue then
+        
+        RaelHubBrookHaven.SetIdTorso(tonumber(value))
+        
+      end
+    end
+  end
+})
+
+local LeftLegDropdown = Roupa:AddDropdown({
+  Name = Clothes.dropdownleftleg,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "",
+  Callback = function(Value)
+    LeftLegValue = Value
+  end
+})
+
+LoadItensInDropdown(LeftLegDropdown, RaelHubBrookHaven.LeftLegPartsList)
+
+Roupa:AddButton({
+  Name = Clothes.equipedbutton,
+  Callback = function()
+    for key, value in pairs(RaelHubBrookHaven.LeftLegPartsList) do
+      if key == LeftLegValue then
+        RaelHubBrookHaven.SetIdLeftLeg(tonumber(value))
+      end
+    end
+  end
+})
+
+local RigthLegDropdown = Roupa:AddDropdown({
+  Name = Clothes.dropdownrigthleg,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "",
+  Callback = function(Value)
+    RigthLegValue = Value
+  end
+})
+
+LoadItensInDropdown(RigthLegDropdown, RaelHubBrookHaven.RightLegPartsList)
+
+Roupa:AddButton({
+  Name = Clothes.equipedbutton,
+  Callback = function()
+    
+    for key, value in pairs(RaelHubBrookHaven.RightLegPartsList) do
+      if key == RigthLegValue then
+        
+        RaelHubBrookHaven.SetIdRightLeg(tonumber(value))
+        
+      end
+    end
+    
+  end
+})
+
+
+Roupa:AddSection({Clothes.section6})
+
+local ValkyrieIdValue
+
+local ValkyrieIds = Roupa:AddDropdown({
+  Name = Clothes.dropdownvalkyrie,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "",
+  Callback = function(Value)
+    ValkyrieIdValue = Value
+  end
+})
+
+LoadItensInDropdown(ValkyrieIds, RaelHubBrookHaven.GetValkyrieIds)
+
+Roupa:AddButton({
+  Name = Clothes.equipedbutton2,
+  Callback = function()
+    
+    for name, valor in pairs(RaelHubBrookHaven.GetValkyrieIds) do
+    
+      if name == ValkyrieIdValue then
+        
+        local args = {
+          [1] = "wear",
+          [2] = valor
+        }
+
+        game:GetService("ReplicatedStorage").RE:FindFirstChild("1Updat1eAvata1r"):FireServer(unpack(args))
+        
+      end
+    end
+  end
+})
+
+Roupa:AddSection({Clothes.section7})
+
+local SparkleTimeFedoraValue
+
+local SparkleTimeFedoraIds = Roupa:AddDropdown({
+  Name = Clothes.dropdownstf,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "",
+  Callback = function(Value)
+    SparkleTimeFedoraValue = Value
+  end
+})
+
+LoadItensInDropdown(SparkleTimeFedoraIds, RaelHubBrookHaven.GetSparkleTimeFedoraIds)
+
+Roupa:AddButton({
+  Name = Clothes.equipedbutton2,
+  Callback = function()
+    
+    for name, valor in pairs(RaelHubBrookHaven.GetSparkleTimeFedoraIds) do
+    
+      if name == SparkleTimeFedoraValue then
+        
+        local args = {
+          [1] = "wear",
+          [2] = valor
+        }
+
+        game:GetService("ReplicatedStorage").RE:FindFirstChild("1Updat1eAvata1r"):FireServer(unpack(args))
+        
+      end
+    end
+  end
+})
+
+Roupa:AddSection({Clothes.section8})
+
+local FairyIdsValue
+
+local SparkleTimeFedoraIds = Roupa:AddDropdown({
+  Name = Clothes.dropdownfairy,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "",
+  Callback = function(Value)
+    FairyIdsValue = Value
+  end
+})
+
+LoadItensInDropdown(SparkleTimeFedoraIds, RaelHubBrookHaven.GetFairyIds)
+
+Roupa:AddButton({
+  Name = Clothes.equipedbutton2,
+  Callback = function()
+    
+    for name, valor in pairs(RaelHubBrookHaven.GetFairyIds) do
+    
+      if name == FairyIdsValue then
+        
+        local args = {
+          [1] = "wear",
+          [2] = valor
+        }
+
+        game:GetService("ReplicatedStorage").RE:FindFirstChild("1Updat1eAvata1r"):FireServer(unpack(args))
+        
+      end
+    end
+  end
+})
+
+local PlayerListMusicCar
+
+Carro:AddSection({Car.section1})
+
+Carro:AddTextBox({
+  Name = Car.textboxtext1,
+  Description = "",
+  PlaceholderText = "0000",
+  Flag = "",
+  Default = false,
+  Callback = function(speed)
+    
+    local function isNumeric(text)
+      return text:match("^%d+$") ~= nil
+    end
+
+    if isNumeric(speed) then
+      local SeuJogador = game.Players.LocalPlayer.Character
+      local Veiculo = workspace.Vehicles
+      if SeuJogador:FindFirstChild("NoMotorVehicleModel") then
+        
+        SeuJogador.Humanoid.WalkSpeed = speed
+        
+      else
+        for _, car in ipairs(Veiculo:GetChildren()) do
+        
+          for _, objeto in ipairs(car: GetDescendants()) do
+        
+            if objeto.Name == "VehicleSeat" then
+          
+              local topspeed = objeto:FindFirstChild("TopSpeed")
+              if topspeed then
+                topspeed.Value = tonumber(speed)
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+})
+
+Carro:AddSection({Car.section2})
+
+Carro:AddToggle({
+  Name = Car.toggle1,
+  Description = "",
+  Flag = "colorido carro",
+  Default = false,
+  Callback = function(Value)
+    
+    getgenv().RaelHubAutoRainbowCar = Value
+    
+    while getgenv().RaelHubAutoRainbowCar do
+      
+      local rainbowColors = {
+        Color3.fromRGB(255, 0, 0),    -- Vermelho
+        Color3.fromRGB(255, 127, 0), -- Laranja
+        Color3.fromRGB(255, 255, 0), -- Amarelo
+        Color3.fromRGB(0, 255, 0),   -- Verde
+        Color3.fromRGB(0, 0, 255),   -- Azul
+        Color3.fromRGB(75, 0, 130),  -- Anil
+        Color3.fromRGB(148, 0, 211)  -- Violeta
+      }
+
+      function ClickButton(Button)
+        local connections = getconnections(Button.MouseButton1Click)
+        for _, connection in pairs(connections) do
+          if connection.Function then
+            pcall(function()
+              connection.Function()
+            end)
+            break
+          end
+        end
+      end
+      
+      pcall(function()
+        
+        local Interface = game:GetService("Players").LocalPlayer.PlayerGui.MainGUIHandler.CarControl
+        
+        local button = game:GetService("Players").LocalPlayer.PlayerGui.MainGUIHandler.CarControl.ColorPicks.Frame.FinalColor
+
+        for _, color in ipairs(rainbowColors) do
+          if getgenv().RaelHubAutoRainbowCar and Interface.Visible then
+            button.BackgroundColor3 = color
+            task.wait(0.3)
+            if getgenv().RaelHubAutoRainbowCar and Interface.Visible then
+              ClickButton(button)
+            end
+          end
+        end
+      end)
+      task.wait(0.1)
+    end
+  end
+})
+
+local vehicles = workspace.Vehicles
+local SelectCar
+local CarDropdown
+
+Carro:AddSection({Car.section3})
+
+local CarDropdown = Carro:AddDropdown({
+  Name = Car.dropdowncar,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "Find carros",
+  Callback = function(Value)
+    SelectCar = Value
+  end
+})
+
+function DropdownCarUptade()
+  
+  local Tabela = {}
+  
+  for _, Car in ipairs(vehicles:GetChildren()) do
+    if Car:IsA("Model") then
+  
+      table.insert(Tabela, Car)
+  
+    end
+  end
+  CarDropdown:Set(Tabela)
+end
+
+DropdownCarUptade()
+
+Carro:AddButton({Car.button1, function()
+  
+  DropdownCarUptade()
+  
+end})
+
+Carro:AddButton({Car.button2, function()
+  
+  local Car = vehicles:FindFirstChild(tostring(SelectCar))
+  if Car then
+    for _, basepart in ipairs(Car:GetDescendants()) do
+      if basepart:IsA("BasePart") then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(basepart.Position)
+      end
+    end
+  end
+end})
+
+local PullCar
+
+PullCar = Carro:AddToggle({
+  Name = Car.toggle2,
+  Description = "",
+  Flag = "PuxarCarro",
+  Default = false,
+  Callback = function(Value)
+    
+    RaelHubBrookHaven.PullCar(tostring(SelectCar), Value)
+    task.wait(0.5)
+    PullCar:Set(false)
+  end
+})
+
+Carro:AddSection({Car.section4})
+
+Carro:AddToggle({
+  Name = Car.toggle3,
+  Description = "",
+  Flag = "Carro spawn fire",
+  Default = false,
+  Callback = function(Value)
+    
+    getgenv().RaelHubSpawnFireValue = Value
+    
+    while getgenv().RaelHubSpawnFireValue do
+      local args = {
+        [1] = "Fire"
+      }
+
+      game:GetService("ReplicatedStorage").RE:FindFirstChild("1Player1sCa1r"):FireServer(unpack(args))
+      task.wait(1)
+    end
+
+    
+  end
+})
+
+Carro:AddToggle({
+  Name = Car.toggle4,
+  Description = "",
+  Flag = "Carro spawn horn 1",
+  Default = false,
+  Callback = function(Value)
+    
+    getgenv().RaelHubSpawnDuke1Value = Value
+    
+    while getgenv().RaelHubSpawnDuke1Value do
+      local args = {
+        [1] = "Duke"
+      }
+
+      game:GetService("ReplicatedStorage").RE:FindFirstChild("1Player1sCa1r"):FireServer(unpack(args))
+      task.wait(1)
+    end
+  end
+})
+
+Carro:AddToggle({
+  Name = Car.toggle5,
+  Description = "",
+  Flag = "Carro spawn horn 2",
+  Default = false,
+  Callback = function(Value)
+    
+    getgenv().RaelHubSpawnDuke2Value = Value
+    
+    while getgenv().RaelHubSpawnDuke2Value do
+      local args = {
+        [1] = "Duke1"
+      }
+
+      game:GetService("ReplicatedStorage").RE:FindFirstChild("1Player1sCa1r"):FireServer(unpack(args))
+
+      task.wait(1)
+    end
+
+    
+  end
+})
+
+local ClimbingWithCar
+local FlyShipConnection = nil
+local FlyShipBv = nil
+local FlyShipBg = nil
+
+Carro:AddSection({Car.section5})
+
+ClimbingWithCar = Carro:AddToggle({
+  Name = Car.toggle6,
+  Description = "",
+  Flag = "Carro Subir",
+  Default = false,
+  Callback = function(Value)
+    
+    if Value then
+      local player = game.Players.LocalPlayer
+      local character = player.Character or player.CharacterAdded:Wait()
+      local rootPart = character:WaitForChild("HumanoidRootPart")
+      local currentPosition = rootPart.Position
+      local adjustedPosition = currentPosition + Vector3.new(0, 300, 0)
+      local TargetPosition = adjustedPosition
+      local SpeedValue = 200
+      local Player = game.Players.LocalPlayer.Character
+      local PlayerPart = Player.PrimaryPart or Player:FindFirstChild("Part")
+
+      FlyShipBv = Instance.new("BodyVelocity", PlayerPart)
+      FlyShipBg = Instance.new("BodyGyro", PlayerPart)
+
+      FlyShipBv.MaxForce = Vector3.new(math.huge, math.huge, math.huge)
+      FlyShipBv.Velocity = (TargetPosition - PlayerPart.Position).Unit * SpeedValue
+
+      FlyShipBg.MaxTorque = Vector3.new(math.huge, math.huge, math.huge)
+      FlyShipBg.D = 500
+      FlyShipBg.CFrame = CFrame.new(PlayerPart.Position, TargetPosition)
+
+      FlyShipConnection = game:GetService("RunService").Heartbeat:Connect(function()
+        local Distance = (TargetPosition - PlayerPart.Position).Magnitude
+        if Distance < 5 then
+          FlyShipBv:Destroy()
+          FlyShipBg:Destroy()
+          FlyShipConnection:Disconnect()
+          FlyShipBv = nil
+          FlyShipBg = nil
+          FlyShipConnection = nil
+          task.wait(0.5)
+          ClimbingWithCar:Set(false)
+        else
+          FlyShipBv.Velocity = (TargetPosition - PlayerPart.Position).Unit * SpeedValue
+          FlyShipBg.CFrame = CFrame.new(PlayerPart.Position, TargetPosition)
+        end
+      end)
+    else
+      
+      if FlyShipBv then
+        FlyShipBv:Destroy()
+        FlyShipBv = nil
+      end
+      if FlyShipBg then
+        FlyShipBg:Destroy()
+        FlyShipBg = nil
+      end
+      if FlyShipConnection then
+        FlyShipConnection:Disconnect()
+        FlyShipConnection = nil
+      end
+    end
+  end
+})
+
+Carro:AddSection({Car.section6})
+
+Carro:AddToggle({
+  Name = Car.toggle7,
+  Description = "",
+  Flag = "No Seat Car",
+  Default = false,
+  Callback = function(Value)
+    
+    RaelHubBrookHaven.NoSeatCar(Value)
+    
+  end
+})
+
+Carro:AddSection({Car.section7})
+
+Carro:AddTextBox({
+  Name = Car.textboxtext2,
+  Description = "",
+  PlaceholderText = "123456789",
+  Flag = "",
+  Default = false,
+  Callback = function(musicid)
+    function ClickButton(Button)
+      local connections = getconnections(Button.MouseButton1Click)
+      for _, connection in pairs(connections) do
+        if connection.Function then
+          pcall(function()
+            connection.Function()
+          end)
+          break
+        end
+      end
+    end
+    local function isNumeric(text)
+      return text:match("^%d+$") ~= nil
+    end
+  
+    if isNumeric(musicid) then
+      local SongName = game:GetService("Players").LocalPlayer.PlayerGui.MainGUIHandler.MainAudio.Catalog.Header.SongName
+      local Button = game:GetService("Players").LocalPlayer.PlayerGui.MainGUIHandler.MainAudio.Catalog.Container.ScrollingFrame.A2001
+      local ID = game:GetService("Players").LocalPlayer.PlayerGui.MainGUIHandler.MainAudio.Catalog.Container.ScrollingFrame.A2001.ID
+    
+      ID.Value = musicid
+      task.spawn(function()
+        ClickButton(Button)
+      end)
+      SongName.Text = ""
+      ID.Value = 1839074215
+    
+    end
+  end
+})
+
+Carro:AddSection({Car.section8})
+
+Carro:AddTextBox({
+  Name = House.textboxtext2,
+  Description = House.textboxdescription,
+  PlaceholderText = "Link",
+  Flag = "",
+  Default = false,
+  Callback = function(url)
+    if string.match(url, "https://pastebin%.com/[%w]+") then
+      local Values = loadstring(game:HttpGet(url))()
+      
+      pcall(function()
+        PlayerListMusicCar:Set(Values)
+      end)
+      
+      
+      getgenv().RaelHubPastebinCarValue = Values
+    end
+  end
+})
+
+PlayerListMusicCar = Carro:AddDropdown({
+  Name = House.dropdowntext2,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "PlayerListMusicCar",
+  Callback = function(Value)
+    getgenv().RaelHubMusicIDropdownCarValue = Value
+  end
+})
+
+if getgenv().RaelHubPastebinCarValue ~= nil then
+  
+  PlayerListMusicCar:Set(getgenv().RaelHubPastebinCarValue)
+  
+end
+
+Carro:AddButton({House.button5, function()
+  function ClickButton(Button)
+    local connections = getconnections(Button.MouseButton1Click)
+    for _, connection in pairs(connections) do
+      if connection.Function then
+        pcall(function()
+          connection.Function()
+        end)
+        break
+      end
+    end
+  end
+  local function isNumeric(text)
+    return text:match("^%d+$") ~= nil
+  end
+  
+  local musicid = getgenv().RaelHubMusicIDropdownCarValue
+  
+  if isNumeric(musicid) then
+    
+    local SongName = game:GetService("Players").LocalPlayer.PlayerGui.MainGUIHandler.MainAudio.Catalog.Header.SongName
+      local Button = game:GetService("Players").LocalPlayer.PlayerGui.MainGUIHandler.MainAudio.Catalog.Container.ScrollingFrame.A2001
+      local ID = game:GetService("Players").LocalPlayer.PlayerGui.MainGUIHandler.MainAudio.Catalog.Container.ScrollingFrame.A2001.ID
+    
+      ID.Value = musicid
+      task.spawn(function()
+        ClickButton(Button)
+      end)
+      SongName.Text = ""
+      ID.Value = 1839074215
+    
+  end
+end})
+
+Carro:AddButton({House.button6, function()
+  
+  function SaveConfig(configTable)
+    local fileName = "RaelHubPlayListCar.json"
+    local json = game:GetService("HttpService"):JSONEncode(configTable)
+    writefile(fileName, json)
+  end
+  
+  if getgenv().RaelHubPastebinCarValue ~= nil then
+  
+    SaveConfig(getgenv().RaelHubPastebinCarValue)
+  
+  end
+  
+end})
+
+Carro:AddButton({House.button7, function()
+  
+  function LoadConfig()
+    local fileName = "RaelHubPlayListCar.json"
+    if isfile(fileName) then
+      local json = readfile(fileName)
+      return game:GetService("HttpService"):JSONDecode(json)
+    else
+      return nil
+    end
+  end
+  
+  if isfile("RaelHubPlayListCar.json") then
+  
+    local PlaylistLoad = LoadConfig()
+    PlayerListMusicCar:Set(PlaylistLoad)
+  end
+  
+end})
+
+local TextSave
+
+local tcs = game:GetService("TextChatService")
+local chat = tcs.ChatInputBarConfiguration.TargetTextChannel
+
+function sendchat(msg)
+  if tcs.ChatVersion == Enum.ChatVersion.LegacyChatService then
+    game:GetService("ReplicatedStorage"):FindFirstChild("DefaultChatSystemChatEvents").SayMessageRequest:FireServer(msg,"All")
+  else
+    chat:SendAsync(msg)
+  end
+end
+
+Player:AddSection({Jogador.section1})
+
+Player:AddTextBox({
+  Name = Jogador.textboxtext,
+  Description = "",
+  PlaceholderText = Jogador.textboxplaceholder,
+  Flag = "",
+  Default = false,
+  Callback = function(text)
+    
+    TextSave = text
+    
+  end
+})
+
+Player:AddButton({Jogador.button1, function()
+  sendchat(TextSave)
+end})
+
+getgenv().RaelHubEnviarDelay = 1
+
+Player:AddSlider({
+  Name = Jogador.slide,
+  Min = 1,
+  Max = 10,
+  Default = 1,
+  Callback = function(Value)
+    
+    getgenv().RaelHubEnviarDelay = Value
+    
+  end
+})
+
+Player:AddToggle({
+  Name = Jogador.toggle1,
+  Description = "",
+  Flag = "Spawn de textos",
+  Default = false,
+  Callback = function(Value)
+    getgenv().RaelHubSpawnText = Value
+    while getgenv().RaelHubSpawnText do
+      
+      sendchat(TextSave)
+      task.wait(getgenv().RaelHubEnviarDelay)
+    end
+  end
+})
+
+local PlayerId = "..."
+
+Player:AddSection({Jogador.section2})
+
+local TeleportePlayers = Player:AddDropdown({
+  Name = Jogador.dropdowntext,
+  Description = "",
+  Options = {},
+  Default = "...",
+  Flag = "Teleporters players",
+  Callback = function(Value)
+    PlayerId = Value
+  end
+})
+
+function UpdatePlayers()
+  local playerNames = {}
+  for _, player in ipairs(game.Players:GetPlayers()) do
+    table.insert(playerNames, player.Name)
+  end
+  TeleportePlayers:Set(playerNames)
+end
+
+UpdatePlayers()
+
+game.Players.PlayerAdded:Connect(UpdatePlayers)
+game.Players.PlayerRemoving:Connect(UpdatePlayers)
+
+Player:AddButton({Jogador.button2, function()
+  local targetPlayerName = PlayerId
+  local targetPlayer = game.Players:FindFirstChild(targetPlayerName)
+  if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = targetPlayer.Character.HumanoidRootPart.CFrame
+  end
+end})
+
+Player:AddButton({Jogador.button3, function()
+  RaelHubBrookHaven.KillPlayer(PlayerId)
+end})
+
+Player:AddButton({Jogador.button4, function()
+  RaelHubBrookHaven.PullPlayer(PlayerId)
+end})
+
+Player:AddToggle({
+  Name = Jogador.toggle2,
+  Description = "",
+  Flag = "Spectar player",
+  Default = false,
+  Callback = function(Value)
+    getgenv().RaelHubSpectatePlayerValue = Value
+    function SpectatePlayer(targetPlayer)
+      if targetPlayer then
+        local targetHumanoid = targetPlayer:FindFirstChild("Humanoid")
+        local targetRootPart = targetPlayer:FindFirstChild("HumanoidRootPart")
+
+        if targetHumanoid and targetRootPart then
+          Camera.CameraSubject = targetHumanoid
+        end
+      end
+    end
+    
+    while getgenv().RaelHubSpectatePlayerValue do
+      local Jogador = workspace:FindFirstChild(PlayerId)
+      SpectatePlayer(Jogador)
+      task.wait(0.5)
+    end
+    Camera.CameraSubject = game.Players.LocalPlayer.Character:FindFirstChild("Humanoid")
+  end
+})
+
+local JogadorSpeedValue = 25
+local JogadorSpeedRunService
+
+Player:AddSection({Jogador.section3})
+
+local PlayerSpeed = Player:AddSlider({
+  Name = Jogador.slidespeed,
+  Min = 14,
+  Max = 100,
+  Default = 25
+})
+
+PlayerSpeed:Callback(function(Value)
+
+  JogadorSpeedValue = Value
+
+end)
+
+local ToggleSpeed = Player:AddToggle({
+  Name = Jogador.toggle3,
+  Description = "",
+  Flag = "Speed Player",
+  Default = false
+})
+
+ToggleSpeed:Callback(function(Value)
+  local RunService = game:GetService("RunService")
+  local Player = game.Players.LocalPlayer
+  local Humanoid = Player.Character and Player.Character:FindFirstChildOfClass("Humanoid")
+
+  if Value then
+
+    JogadorSpeedRunService = RunService.Heartbeat:Connect(function()
+      if Humanoid then
+        Humanoid.WalkSpeed = JogadorSpeedValue
+      end
+    end)
+  else
+
+    if JogadorSpeedRunService then
+      JogadorSpeedRunService:Disconnect()
+      JogadorSpeedRunService = nil
+    end
+    if Humanoid then
+      Humanoid.WalkSpeed = 16
+    end
+  end
+end)
+
+local JogadorJumpValue = 50
+local JogadorJumpRunService
+
+Player:AddSection({Jogador.section4})
+
+local PlayerJump = Player:AddSlider({
+  Name = Jogador.slidejump,
+  Min = 50,
+  Max = 500,
+  Default = 25,
+  Callback = function()
+    
+    JogadorJumpValue = Value
+    
+  end
+})
+
+local JumpPower = Player:AddToggle({
+  Name = Jogador.toggle4,
+  Description = "",
+  Flag = "Jump Power",
+  Default = false
+})
+
+JumpPower:Callback(function(Value)
+  local RunService = game:GetService("RunService")
+  local Player = game.Players.LocalPlayer
+  local Humanoid = Player.Character and Player.Character:FindFirstChildOfClass("Humanoid")
+
+  if Value then
+
+    JogadorJumpRunService = RunService.Heartbeat:Connect(function()
+      if Humanoid then
+        Humanoid.JumpPower = JogadorJumpValue
+      end
+    end)
+  else
+
+    if JogadorJumpRunService then
+      JogadorJumpRunService:Disconnect()
+      JogadorJumpRunService = nil
+    end
+    if Humanoid then
+      Humanoid.JumpPower = 50
+    end
+  end
+end)
+
+local NoclipState
+
+Player:AddSection({Jogador.section5})
+
+local Noclip = Player:AddToggle({
+  Name = Jogador.toggle5,
+  Description = "",
+  Flag = "No clip",
+  Default = false
+})
+
+Noclip:Callback(function(Value)
+  pcall(function()
+    
+    
+    function PlayerCollicion(value)
+      local player = game.Players.LocalPlayer
+      local character = player.Character or player.CharacterAdded:Wait()
+
+      for _, part in ipairs(character:GetDescendants()) do
+        if part:IsA("BasePart") then
+          part.CanCollide = value
+        end
+      end
+    end
+    
+    
+    local RunService = game:GetService("RunService")
+
+    if Value then
+      NoclipState = RunService.Heartbeat:Connect(function()
+        pcall(function()
+          PlayerCollicion(false)
+        end)
+      end)
+    else
+      if NoclipState then
+        NoclipState:Disconnect()
+        NoclipState = nil
+        PlayerCollicion(true)
+      end
+    end
+  end)
+end)
+
+Player:AddSection({Jogador.section6})
+
+local PlayerFullbright = Player:AddToggle({
+  Name = Jogador.toggle6,
+  Description = "",
+  Flag = "Full bright",
+  Default = false
+})
+
+PlayerFullbright:Callback(function(Value)
+  if Value then
+    local Light = game:GetService("Lighting")
+
+    function dofullbright()
+      Light.Ambient = Color3.new(1, 1, 1)
+      Light.ColorShift_Bottom = Color3.new(1, 1, 1)
+      Light.ColorShift_Top = Color3.new(1, 1, 1)
+      Light.ClockTime = 14
+    end
+
+    dofullbright()
+
+    getgenv().RaelHubFullbright = Light.LightingChanged:Connect(dofullbright)
+  else
+    if getgenv().RaelHubFullbright then
+      getgenv().RaelHubFullbright:Disconnect()
+      getgenv().RaelHubFullbright = nil
+    end
+    RaelHubFunction.restoreLighting()
+  end
+end)
+
+local Esp_player_button = Esp:AddToggle({
+  Name = Mostrar.toggle1,
+  Description = "",
+  Flag = "EspPayer",
+  Default = false
+})
+
+local EspCarValue
+
+local Esp_car_button = Esp:AddToggle({
+  Name = Mostrar.toggle2,
+  Description = "",
+  Flag = "EspCarro",
+  Default = false
+})
+
+Esp_car_button:Callback(function(Value)
+  pcall(function()
+    local RunService = game:GetService("RunService")
+
+    if Value then
+      EspCarValue = RunService.Heartbeat:Connect(function()
+        pcall(function()
+          local Cars = workspace.Vehicles:GetChildren()
+          for _, Car in ipairs(Cars) do
+            if not Car:FindFirstChild("RaelHubIcon") and not Car:FindFirstChild("RaelHubDestaque") then
+              RaelHubFunction.CreateEspDistance(Car, Color3.fromRGB(253, 255, 89), Car.Name, true)
+            end
+          end
+        end)
+      end)
+    else
+      if EspCarValue then
+        EspCarValue:Disconnect()
+        EspCarValue = nil
+      end
+
+      local Cars = workspace.Vehicles:GetChildren()
+      for _, Car in ipairs(Cars) do
+        RaelHubFunction.DisableEsp(Car)
+      end
+    end
+  end)
+end)
+
+Esp_player_button:Callback(function(Value)
+  RaelHubEspState = Value
+  if RaelHubEspState then
+    task.spawn(EspPlayer)
+  end
+end)
+Credits:AddDiscordInvite({
+  Name = "Rael Hub",
+  Description = Creditos.descricao,
+  Logo = "rbxassetid://107050233461374",
+  Invite = "Laelmano24"
+})
