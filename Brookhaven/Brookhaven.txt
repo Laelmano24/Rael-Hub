@@ -139,22 +139,29 @@ NoclipDoor = Casa:AddToggle({
   Flag = "AtravessarPortadaCasa",
   Default = false,
   Callback = function(Value)
-
-    if Value then
-      local House = workspace["001_Lots"]:FindFirstChild(tostring(SelectHouse))
-      for _, Base in ipairs(House.HousePickedByPlayer.HouseModel["001_HouseDoors"].HouseDoorFront:GetChildren()) do
-        if Base:IsA("BasePart") then
-          Base.CanCollide = false
+    pcall(function()
+      if Value then
+        local House = workspace["001_Lots"]:FindFirstChild(tostring(SelectHouse))
+        local housepickedbyplayer = House:FindFirstChild("HousePickedByPlayer")
+        if housepickedbyplayer then
+          for _, Base in ipairs(housepickedbyplayer.HouseModel["001_HouseDoors"].HouseDoorFront:GetChildren()) do
+            if Base:IsA("BasePart") then
+              Base.CanCollide = false
+            end
+          end
+        end
+      else
+        local House = workspace["001_Lots"]:FindFirstChild(tostring(SelectHouse))
+        local housepickedbyplayer = House:FindFirstChild("HousePickedByPlayer")
+        if housepickedbyplayer then
+          for _, Base in ipairs(housepickedbyplayer.HouseModel["001_HouseDoors"].HouseDoorFront:GetChildren()) do
+            if Base:IsA("BasePart") then
+              Base.CanCollide = true
+            end
+          end
         end
       end
-    else
-      local House = workspace["001_Lots"]:FindFirstChild(tostring(SelectHouse))
-      for _, Base in ipairs(House.HousePickedByPlayer.HouseModel["001_HouseDoors"].HouseDoorFront:GetChildren()) do
-        if Base:IsA("BasePart") then
-          Base.CanCollide = true
-        end
-      end
-    end
+    end)
   end
 })
 
